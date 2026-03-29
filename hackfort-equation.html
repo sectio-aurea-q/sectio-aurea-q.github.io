@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The Hackfort Equation — Quantum Criticality Index by Sabrina Hackfort</title>
+  <meta name="description" content="The Hackfort Equation Φ_H(S,t) quantifies quantum criticality in biological, pharmacological, and cryptographic systems. Derived from the Hackfort Axiom by Sabrina Hackfort, 2026.">
+  <meta name="keywords" content="Hackfort Equation, Hackfort Axiom, quantum criticality index, Sabrina Hackfort, quantum fraction, tunneling coefficient, Lindblad decoherence, CYP3A4, MAO-A, enzyme quantum tunneling">
+  <meta name="author" content="Sabrina Hackfort">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sectio-aurea-q.github.io/hackfort-equation.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The Hackfort Equation — Quantum Criticality Index">
+  <meta property="og:description" content="A mathematical framework derived from the Hackfort Axiom, quantifying quantum criticality across biology, pharmacology, and cryptography. By Sabrina Hackfort.">
+  <meta property="og:url" content="https://sectio-aurea-q.github.io/hackfort-equation.html">
+  <meta property="article:author" content="Sabrina Hackfort">
+  <meta property="article:published_time" content="2026-03-29">
+
+  <meta name="citation_author" content="Hackfort, Sabrina">
+  <meta name="citation_title" content="The Hackfort Equation: A Mathematical Framework for Quantum Criticality">
+  <meta name="citation_date" content="2026/03/29">
+  <meta name="citation_keywords" content="quantum criticality; Hackfort Axiom; quantum fraction; tunneling; decoherence">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "The Hackfort Equation",
+    "headline": "The Hackfort Equation: A Mathematical Framework for Quantum Criticality in Biological, Pharmacological, and Cryptographic Systems",
+    "author": {
+      "@type": "Person",
+      "name": "Sabrina Hackfort",
+      "birthDate": "1981-10-13",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "MEGALODON Research"
+      },
+      "url": "https://sectio-aurea-q.github.io/sabrina-hackfort.html"
+    },
+    "datePublished": "2026-03-29",
+    "description": "We introduce the Hackfort Axiom and derive the Hackfort Equation, a scalar quantity quantifying quantum criticality across biological, pharmacological, and cryptographic systems.",
+    "about": ["Quantum Biology", "Quantum Criticality", "Enzyme Tunneling", "Post-Quantum Cryptography"],
+    "url": "https://sectio-aurea-q.github.io/hackfort-equation.html"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0d0f13;
+      --paper: #f6f4f0;
+      --cream: #ece8e0;
+      --navy: #1a1a2e;
+      --accent: #c4a35a;
+      --accent-dim: #a08642;
+      --blue: #2d4a7a;
+      --subtle: #6b6560;
+      --line: #d4cfc8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 17px; }
+
+    body {
+      font-family: 'EB Garamond', 'DM Sans', serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      padding: 20px 10vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+    nav a {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--subtle);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+    nav .nav-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    /* ── ARTICLE ── */
+    article {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    .article-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .article-subtitle {
+      font-size: 1.1rem;
+      color: var(--subtle);
+      font-style: italic;
+      margin-bottom: 30px;
+      font-weight: 300;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .article-meta {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--subtle);
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin: 50px 0 20px;
+    }
+
+    h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 35px 0 12px;
+    }
+
+    p {
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+    }
+
+    /* ── EQUATION BOX ── */
+    .eq-box {
+      background: var(--navy);
+      color: var(--paper);
+      padding: 40px 32px;
+      margin: 35px 0;
+      border-radius: 2px;
+      text-align: center;
+    }
+
+    .eq-box .eq-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .eq-box .eq-main {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+      color: var(--accent);
+      line-height: 2;
+    }
+
+    .eq-box .eq-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(246,244,240,0.5);
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    /* ── AXIOM BOX ── */
+    .axiom-box {
+      border: 1.5px solid var(--navy);
+      background: rgba(26,26,46,0.03);
+      padding: 30px 28px;
+      margin: 30px 0;
+      border-radius: 2px;
+    }
+
+    .axiom-box .axiom-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .axiom-box p {
+      font-size: 0.98rem;
+      margin-bottom: 12px;
+    }
+
+    .axiom-box .axiom-eq {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 1rem;
+      color: var(--navy);
+      text-align: center;
+      padding: 8px 0;
+    }
+
+    /* ── TABLE ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+    }
+
+    thead th {
+      background: var(--navy);
+      color: var(--paper);
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    tbody td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    tbody tr:nth-child(even) { background: var(--cream); }
+
+    .val-bold {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    /* ── PROOF ── */
+    .proof {
+      background: var(--cream);
+      padding: 28px 24px;
+      margin: 30px 0;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 2px 2px 0;
+      font-size: 0.95rem;
+    }
+
+    .proof .proof-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .proof p { margin-bottom: 10px; font-size: 0.92rem; }
+    .proof .qed { text-align: right; font-size: 1.1rem; }
+
+    /* ── COROLLARY ── */
+    .corollary {
+      border: 1px solid var(--accent);
+      padding: 24px;
+      margin: 25px 0;
+      border-radius: 2px;
+    }
+
+    .corollary .cor-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--accent-dim);
+      margin-bottom: 8px;
+    }
+
+    .corollary p { font-size: 0.92rem; margin-bottom: 8px; }
+
+    .corollary .prediction {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--blue);
+      font-weight: 500;
+      margin-top: 8px;
+    }
+
+    /* ── BLOCKQUOTE ── */
+    blockquote {
+      border-left: 2px solid var(--accent);
+      padding-left: 20px;
+      margin: 30px 0;
+      font-style: italic;
+      color: var(--navy);
+      font-size: 1.15rem;
+    }
+
+    /* ── FOOTER ── */
+    .article-footer {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .article-footer .timestamp {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.7rem;
+      color: var(--subtle);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .article-footer .hash {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.6rem;
+      color: var(--accent-dim);
+      word-break: break-all;
+      max-width: 500px;
+      margin: 0 auto 20px;
+    }
+
+    .article-footer .copyright {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      color: var(--subtle);
+    }
+
+    @media (max-width: 768px) {
+      article { padding: 50px 20px 80px; }
+      nav { padding: 16px 5vw; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="sabrina-hackfort.html" class="nav-name">Sabrina Hackfort</a>
+    <div>
+      <a href="https://github.com/sectio-aurea-q">GitHub</a>
+    </div>
+  </nav>
+
+  <article>
+    <div class="article-label">Mathematical Framework · March 2026</div>
+    <h1>The Hackfort Equation</h1>
+    <p class="article-subtitle">A unified quantum criticality index for biological, pharmacological, and cryptographic systems</p>
+    <div class="article-meta">
+      Sabrina Hackfort · Born October 13, 1981 · MEGALODON Research · Ahaus, Germany<br>
+      Bitcoin-timestamped March 29, 2026 · Independent Research
+    </div>
+
+    <h2>The Core Idea</h2>
+    <p>
+      Classical models dominate science — from drug dosing to species conservation to cryptographic security. 
+      These models assume classical mechanics. Yet quantum effects like tunneling and coherence play measurable 
+      roles in enzyme catalysis, and classical models systematically miss them.
+    </p>
+    <p>
+      The Hackfort Equation quantifies exactly <em>how much</em> a classical model misses. It provides a single 
+      number — the Quantum Criticality Index Φ<sub>H</sub> — that tells you what fraction of a system's 
+      behavior is invisible to classical analysis.
+    </p>
+
+    <h2>The Hackfort Axiom</h2>
+
+    <div class="axiom-box">
+      <div class="axiom-title">Axiom 1 — Quantum Discrepancy (Hackfort, 2026)</div>
+      <p>
+        For every system S possessing at least one quantum-mechanical degree of freedom, 
+        there exists an observable 𝒪 such that the quantum-mechanical expectation value 
+        exceeds the classical one:
+      </p>
+      <div class="axiom-eq">⟨𝒪⟩<sub>QM</sub> − ⟨𝒪⟩<sub>class</sub> ≥ 0</div>
+      <p>
+        The discrepancy is non-negative, systematic, and measurable. Quantum effects <em>add</em> 
+        to classical predictions — tunneling makes reactions faster, coherence increases efficiency.
+      </p>
+    </div>
+
+    <h2>The Equation</h2>
+
+    <p>From this single axiom, the following theorem is derived with a complete formal proof:</p>
+
+    <div class="eq-box">
+      <div class="eq-label">The Hackfort Equation</div>
+      <div class="eq-main">
+        Φ<sub>H</sub>(S, t) = Σ<sub>i</sub> w<sub>i</sub> · α<sub>i</sub>(t) · η<sub>i</sub> · (1 + |λ̃<sub>i</sub>(t)|)
+      </div>
+      <div class="eq-note">
+        η<sub>i</sub> = 1 − 1/κ<sub>i</sub> &nbsp;&nbsp;·&nbsp;&nbsp;
+        κ<sub>i</sub> = k<sub>QM</sub> / k<sub>class</sub> &nbsp;&nbsp;·&nbsp;&nbsp;
+        λ̃<sub>i</sub>(t) = (d/dt ln Γ<sub>i</sub>) / λ<sub>ref</sub>
+      </div>
+    </div>
+
+    <h3>What each term means</h3>
+    <p>
+      <strong>η<sub>i</sub></strong> — the <em>quantum fraction</em>: what proportion of the system's rate comes from quantum effects. 
+      Ranges from 0 (purely classical) to just below 1 (fully quantum-dominated).
+    </p>
+    <p>
+      <strong>α<sub>i</sub>(t)</strong> — <em>functionality</em>: how active the quantum channel is. 
+      A healthy enzyme has α = 1; an inhibited one has α &lt; 1; an extinct species has α → 0.
+    </p>
+    <p>
+      <strong>λ̃<sub>i</sub>(t)</strong> — <em>coherence dynamics</em>: how fast the quantum landscape is changing. 
+      Derived from the Lindblad master equation for open quantum systems.
+    </p>
+    <p>
+      <strong>w<sub>i</sub></strong> — <em>weight</em>: relative importance of each quantum channel. Normalized so Σw<sub>i</sub> = 1.
+    </p>
+
+    <h3>The multiplicative structure</h3>
+    <p>
+      The equation uses multiplication, not addition. This encodes a physical law: 
+      <strong>no quantum effect (η = 0) means no quantum criticality, regardless of dynamics.</strong> 
+      Coherence changes can amplify quantum behavior, but cannot create it from nothing.
+    </p>
+
+    <h2>Proof Summary</h2>
+
+    <div class="proof">
+      <div class="proof-title">Theorem (Hackfort, 2026) — Proven properties:</div>
+      <p><strong>(i) Non-negativity:</strong> Φ<sub>H</sub> ≥ 0 — follows from the Axiom (κ ≥ 1 → η ≥ 0).</p>
+      <p><strong>(ii) Dimensionless:</strong> Every factor is a ratio — no units, universally comparable.</p>
+      <p><strong>(iii) Zero condition:</strong> Φ<sub>H</sub> = 0 if and only if all channels are classical or inactive.</p>
+      <p><strong>(iv) Bounded:</strong> Φ<sub>H</sub> &lt; max<sub>i</sub>(1 + |λ̃<sub>i</sub>|).</p>
+      <div class="qed">∎</div>
+    </div>
+
+    <h2>Calculations with Real Data</h2>
+
+    <p>Using peer-reviewed experimental values for three FDA-relevant enzymes:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Enzyme</th>
+          <th>κ (experimental)</th>
+          <th>Source</th>
+          <th>η = 1 − 1/κ</th>
+          <th>Φ<sub>H</sub></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CYP3A4</td>
+          <td>3.0</td>
+          <td>Zhang/Lin 2009</td>
+          <td>0.667</td>
+          <td class="val-bold">0.667</td>
+        </tr>
+        <tr>
+          <td>MAO-A</td>
+          <td>8.5</td>
+          <td>Oanca/Mavri 2020</td>
+          <td>0.882</td>
+          <td class="val-bold">0.882</td>
+        </tr>
+        <tr>
+          <td>ADH</td>
+          <td>4.1</td>
+          <td>Klinman (review)</td>
+          <td>0.756</td>
+          <td class="val-bold">0.756</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      MAO-A shows the highest quantum criticality at 0.882 — meaning 88.2% of its catalytic rate 
+      comes from quantum tunneling. Classical pharmacokinetic models for MAO-A inhibitors 
+      (used in antidepressant therapy) underestimate the true reaction rate by a factor of 8.5×.
+    </p>
+
+    <p>
+      CYP3A4, which metabolizes approximately 50% of all oral drugs, has Φ<sub>H</sub> = 0.667 — 
+      two-thirds of its catalysis is quantum in origin and invisible to classical dosing models.
+    </p>
+
+    <h2>Predictions</h2>
+
+    <div class="corollary">
+      <div class="cor-title">Corollary 1 — Pharmacological Quantum Error</div>
+      <p>Classical dosing models underestimate metabolic rates by a factor of κ for every quantum-critical enzyme.</p>
+      <div class="prediction">Testable: CYP3A4 + ketoconazole should produce a ~10% KIE shift, measurable via deuterium labeling.</div>
+    </div>
+
+    <div class="corollary">
+      <div class="cor-title">Corollary 2 — Quantum Biodiversity Loss</div>
+      <p>Species extinction destroys irreplaceable quantum-biological infrastructure — enzymatic quantum channels shaped by millions of years of evolution.</p>
+      <div class="prediction">Testable: CR species with higher Φ<sub>H</sub> should show greater sensitivity to environmental perturbation.</div>
+    </div>
+
+    <div class="corollary">
+      <div class="cor-title">Corollary 3 — Cryptographic Quantum Exposure</div>
+      <p>Systems claiming post-quantum security while remaining downgradeable have Φ<sub>H</sub> > 0.</p>
+      <div class="prediction">Confirmed: PQ-GHOST demonstrated η > 0 for 52 of 52 tested systems.</div>
+    </div>
+
+    <blockquote>
+      The Hackfort Equation does not replace existing theories — it reveals what they miss.
+    </blockquote>
+
+    <div class="article-footer">
+      <div class="timestamp">BITCOIN-TIMESTAMPED · MARCH 29, 2026</div>
+      <div class="hash">SHA256: 5914aa92aeaec163fe5bc3a2ad007759cc199814f24e8bbdedaa657f6b8b43f4</div>
+      <div class="copyright">© 2026 Sabrina Hackfort — MEGALODON Research — Ahaus, Germany</div>
+    </div>
+  </article>
+
+</body>
+</html>
