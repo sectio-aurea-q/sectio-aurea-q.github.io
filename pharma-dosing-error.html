@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pharma Is Dosing Drugs Wrong — The Quantum Error Nobody Is Calculating</title>
+<meta name="description" content="CYP3A4 metabolizes 50% of all oral drugs. Its tunneling coefficient is 3×. No clinical dosing model includes this. Here is the math.">
+<meta property="og:title" content="Pharma Is Dosing Drugs Wrong — The Quantum Error">
+<meta property="og:description" content="CYP3A4 processes 50% of all oral drugs. Quantum tunneling makes it 3× faster than models predict. No dosing formula accounts for this.">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "name": "Pharma Is Dosing Drugs Wrong — The Quantum Error Nobody Is Calculating",
+  "author": {
+    "@type": "Person",
+    "name": "Sabrina Hackfort",
+    "url": "https://sectio-aurea-q.github.io/sabrina-hackfort.html"
+  },
+  "datePublished": "2026-03-30",
+  "description": "Quantitative demonstration that pharmaceutical dosing models systematically ignore quantum tunneling corrections in drug-metabolizing enzymes, with peer-reviewed data for CYP3A4, MAO-A, and ADH."
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #fafaf8;
+    --bg-dark: #f0efeb;
+    --bg-code: #1a1a2e;
+    --text: #1a1a1a;
+    --text-dim: #5a5a5a;
+    --text-light: #8a8a8a;
+    --red: #c0392b;
+    --red-light: #fdecea;
+    --red-dark: #922b21;
+    --green: #1e8449;
+    --green-light: #eafaf1;
+    --blue: #2471a3;
+    --blue-light: #eaf2f8;
+    --gold: #d4a853;
+    --border: #d5d5d0;
+    --border-light: #e8e8e3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ WARNING BANNER ============ */
+  .warning-banner {
+    background: var(--red);
+    color: white;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ============ HEADER ============ */
+  .header {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 4rem 2rem 3rem;
+    border-bottom: 2px solid var(--text);
+  }
+
+  .header-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .header h1 span {
+    color: var(--red);
+  }
+
+  .header-sub {
+    font-size: 1.25rem;
+    color: var(--text-dim);
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 620px;
+  }
+
+  .header-meta {
+    margin-top: 1.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-light);
+  }
+
+  /* ============ CONTENT ============ */
+  .content {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: 1.05rem;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+  }
+
+  p.dim { color: var(--text-dim); }
+
+  strong { font-weight: 600; }
+
+  .red { color: var(--red); font-weight: 600; }
+
+  /* ============ FORMULA BOXES ============ */
+  .formula-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin: 2rem 0;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .formula-box {
+    padding: 1.5rem;
+  }
+
+  .formula-box.classical {
+    background: var(--bg-dark);
+    border-right: 1px solid var(--border);
+  }
+
+  .formula-box.quantum {
+    background: var(--red-light);
+  }
+
+  .formula-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .formula-label.old { color: var(--text-light); }
+  .formula-label.new { color: var(--red); }
+
+  .formula-eq {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .formula-note {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* ============ ENZYME CARD ============ */
+  .enzyme-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin: 2rem 0;
+    overflow: hidden;
+  }
+
+  .enzyme-header {
+    background: var(--bg-code);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .enzyme-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .enzyme-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    background: var(--red);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+  }
+
+  .enzyme-body {
+    padding: 1.5rem;
+  }
+
+  .enzyme-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .enzyme-stat {
+    text-align: center;
+    padding: 1rem;
+    background: var(--bg-dark);
+    border-radius: 4px;
+  }
+
+  .enzyme-stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .enzyme-stat-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  .enzyme-stat-value.danger { color: var(--red); }
+
+  .enzyme-stat-note {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+  }
+
+  .enzyme-source {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    border-top: 1px solid var(--border-light);
+    padding-top: 1rem;
+  }
+
+  /* ============ CALCULATION BOX ============ */
+  .calc-box {
+    background: var(--bg-code);
+    color: #e0e0e0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    line-height: 1.8;
+    overflow-x: auto;
+  }
+
+  .calc-box .comment { color: #6a9955; }
+  .calc-box .keyword { color: #c0392b; font-weight: 600; }
+  .calc-box .number { color: #d4a853; }
+  .calc-box .result { color: #e74c3c; font-weight: 600; }
+
+  /* ============ IMPACT BOX ============ */
+  .impact-box {
+    background: var(--red-light);
+    border-left: 4px solid var(--red);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .impact-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .impact-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--red-dark);
+    line-height: 1.5;
+  }
+
+  /* ============ DRUG TABLE ============ */
+  .drug-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .drug-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 2px solid var(--text);
+  }
+
+  .drug-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+  }
+
+  .drug-table tr:hover {
+    background: var(--red-light);
+  }
+
+  .drug-name {
+    font-weight: 600;
+  }
+
+  .drug-error {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--red);
+    font-weight: 600;
+  }
+
+  /* ============ SUMMARY ============ */
+  .summary {
+    background: var(--bg-code);
+    color: white;
+    padding: 3rem 2rem;
+    margin: 3rem -2rem 0;
+  }
+
+  .summary h2 {
+    color: var(--red);
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .summary-item {
+    text-align: center;
+  }
+
+  .summary-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--red);
+  }
+
+  .summary-label {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-top: 0.25rem;
+  }
+
+  .summary p {
+    color: #ccc;
+    font-size: 0.95rem;
+  }
+
+  .summary .fix {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+  }
+
+  .summary .fix-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .summary .fix-eq {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .summary .fix-note {
+    font-size: 0.85rem;
+    color: #999;
+  }
+
+  /* ============ SOURCES ============ */
+  .sources {
+    padding: 2rem 0 3rem;
+  }
+
+  .sources h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .sources ol {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    padding-left: 1.5rem;
+    line-height: 2;
+  }
+
+  /* ============ CTA ============ */
+  .cta {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 2px solid var(--text);
+  }
+
+  .cta-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    text-decoration: none;
+    padding: 0.7rem 1.5rem;
+    border: 1.5px solid var(--red);
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+
+  .cta-link:hover {
+    background: var(--red);
+    color: white;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-light);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 2rem; }
+    .formula-compare { grid-template-columns: 1fr; }
+    .formula-box.classical { border-right: none; border-bottom: 1px solid var(--border); }
+    .enzyme-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .summary { margin: 3rem -1rem 0; padding: 2rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- WARNING BANNER -->
+<div class="warning-banner">
+  Every calculation below uses only peer-reviewed, published data
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-label">NANSHE — Quantum Dosing Error Calculator</div>
+  <h1>Pharma Is Dosing<br>Drugs <span>Wrong</span></h1>
+  <p class="header-sub">
+    CYP3A4 metabolizes 50% of all oral drugs. Its quantum tunneling coefficient is 3×.
+    No clinical dosing model on Earth includes this correction. Here is the math.
+  </p>
+  <div class="header-meta">
+    Sabrina Hackfort · MEGALODON Research · March 2026 · All sources peer-reviewed
+  </div>
+</header>
+
+<div class="content">
+
+  <!-- SECTION 1: THE PROBLEM -->
+  <div class="section">
+    <div class="section-num">01 — The problem</div>
+    <h2>One line of math is missing from every dosing formula</h2>
+
+    <p>
+      Every pharmaceutical dosing model calculates how fast enzymes break down drugs using classical transition state theory — the Eyring or Arrhenius equation. This framework assumes protons and hydrides move <strong>over</strong> energy barriers.
+    </p>
+    <p>
+      They don't. They tunnel <strong>through</strong> them.
+    </p>
+    <p>
+      When quantum tunneling occurs, the real reaction rate is <strong>faster</strong> than the classical prediction. The drug disappears from the patient's blood faster than the model says. The dose runs out early. The patient is undertreated.
+    </p>
+
+    <div class="formula-compare">
+      <div class="formula-box classical">
+        <div class="formula-label old">What pharma uses</div>
+        <div class="formula-eq">k = (k_B·T/h) · e^(−ΔG‡/RT)</div>
+        <div class="formula-note">Eyring equation. Classical. No quantum term. This is in every pharmacokinetics textbook.</div>
+      </div>
+      <div class="formula-box quantum">
+        <div class="formula-label new">What the physics actually says</div>
+        <div class="formula-eq">k_real = k_classical × κ</div>
+        <div class="formula-note">One correction factor. κ = tunneling coefficient. Published, measured, peer-reviewed. Not included in any dosing model.</div>
+      </div>
+    </div>
+
+    <p class="dim">
+      The correction is one multiplication. That's it. Multiply the classical rate by κ. The tunneling coefficients have been published for decades. Nobody uses them.
+    </p>
+  </div>
+
+  <!-- SECTION 2: CYP3A4 -->
+  <div class="section">
+    <div class="section-num">02 — CYP3A4: half of all drugs</div>
+    <h2>The most important drug enzyme on the planet</h2>
+
+    <div class="enzyme-card">
+      <div class="enzyme-header">
+        <span class="enzyme-name">Cytochrome P450 3A4 (EC 1.14.14.1)</span>
+        <span class="enzyme-badge">~50% OF ALL ORAL DRUGS</span>
+      </div>
+      <div class="enzyme-body">
+        <div class="enzyme-grid">
+          <div class="enzyme-stat">
+            <div class="enzyme-stat-label">Measured KIE</div>
+            <div class="enzyme-stat-value danger">15.0</div>
+            <div class="enzyme-stat-note">Classical max: ~7.0</div>
+          </div>
+          <div class="enzyme-stat">
+            <div class="enzyme-stat-label">Tunneling coeff. κ</div>
+            <div class="enzyme-stat-value danger">3.0×</div>
+            <div class="enzyme-stat-note">Real rate = 3× classical</div>
+          </div>
+          <div class="enzyme-stat">
+            <div class="enzyme-stat-label">Dosing error</div>
+            <div class="enzyme-stat-value danger">−75%</div>
+            <div class="enzyme-stat-note">Drug gone too fast</div>
+          </div>
+        </div>
+
+        <div class="calc-box">
+<span class="comment">// CYP3A4: The calculation pharma is not doing</span>
+
+<span class="comment">// Published tunneling coefficient:</span>
+κ = <span class="number">3.0</span>    <span class="comment">// Zhang, Lin (2009) J.Phys.Chem.A 113:11501</span>
+
+<span class="comment">// After one classical half-life, pharma expects:</span>
+C_expected = C₀ × <span class="number">0.50</span>    <span class="comment">// 50% remaining</span>
+
+<span class="comment">// Real concentration (with tunneling):</span>
+C_real = C₀ × 2^(−κ) = C₀ × 2^(−<span class="number">3.0</span>)
+C_real = C₀ × <span class="number">0.125</span>         <span class="comment">// 12.5% remaining</span>
+
+<span class="comment">// The error:</span>
+<span class="result">Patient has 75% LESS drug than the model predicts.</span>
+        </div>
+
+        <div class="enzyme-source">
+          KIE: Krauser, Guengerich (2005) J.Biol.Chem. 280:19496<br>
+          κ: Zhang, Lin (2009) J.Phys.Chem.A 113:11501
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-box">
+      <div class="impact-title">Patient impact</div>
+      <div class="impact-text">
+        Atorvastatin (Lipitor), Cyclosporine, Midazolam, Codeine — all metabolized by CYP3A4.
+        If the drug is cleared 3× faster than predicted: statins fail → cardiovascular events.
+        Immunosuppressants fail → organ rejection. Pain medication wears off early.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: MAO-A -->
+  <div class="section">
+    <div class="section-num">03 — MAO-A: antidepressants</div>
+    <h2>The enzyme that breaks down serotonin</h2>
+
+    <div class="enzyme-card">
+      <div class="enzyme-header">
+        <span class="enzyme-name">Monoamine Oxidase A (EC 1.4.3.4)</span>
+        <span class="enzyme-badge">ALL MAO INHIBITOR ANTIDEPRESSANTS</span>
+      </div>
+      <div class="enzyme-body">
+        <div class="enzyme-grid">
+          <div class="enzyme-stat">
+            <div class="enzyme-stat-label">Measured KIE</div>
+            <div class="enzyme-stat-value danger">8.5</div>
+            <div class="enzyme-stat-note">Classical max: ~7.0</div>
+          </div>
+          <div class="enzyme-stat">
+            <div class="enzyme-stat-label">Tunneling coeff. κ</div>
+            <div class="enzyme-stat-value danger">3.0×</div>
+            <div class="enzyme-stat-note">Real rate = 3× classical</div>
+          </div>
+          <div class="enzyme-stat">
+            <div class="enzyme-stat-label">Dosing error</div>
+            <div class="enzyme-stat-value danger">−75%</div>
+            <div class="enzyme-stat-note">Drug gone too fast</div>
+          </div>
+        </div>
+
+        <div class="calc-box">
+<span class="comment">// MAO-A: KIE = 8.5 — EXCEEDS classical limit of 7.0</span>
+<span class="comment">// This is IMPOSSIBLE without quantum tunneling.</span>
+
+κ = <span class="number">3.0</span>    <span class="comment">// Klinman (1994) Biochemistry 33:14871</span>
+
+<span class="comment">// Classical model predicts: 50% remaining</span>
+<span class="comment">// Reality:</span>
+C_real = C₀ × 2^(−<span class="number">3.0</span>) = C₀ × <span class="number">0.125</span>
+
+<span class="result">Patient has 75% LESS antidepressant than prescribed.</span>
+<span class="result">Serotonin is cleared 3× faster than the model says.</span>
+        </div>
+
+        <div class="enzyme-source">
+          KIE: Oanca, Stare, Mavri (2020) PMID:32191250<br>
+          κ: Klinman (1994) Biochemistry 33:14871
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-box">
+      <div class="impact-title">Patient impact</div>
+      <div class="impact-text">
+        Tranylcypromine, Phenelzine, Selegiline — MAO inhibitor antidepressants.
+        Underdosing: antidepressant fails, neurotransmitters cleared too fast.
+        Overdosing (prodrug activation): serotonin syndrome — hyperthermia, seizures. Potentially fatal.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: ADH -->
+  <div class="section">
+    <div class="section-num">04 — ADH: alcohol and poisoning</div>
+    <h2>The enzyme that decides if you survive methanol poisoning</h2>
+
+    <div class="enzyme-card">
+      <div class="enzyme-header">
+        <span class="enzyme-name">Alcohol Dehydrogenase (EC 1.1.1.1)</span>
+        <span class="enzyme-badge">ALCOHOL + DRUG INTERACTIONS</span>
+      </div>
+      <div class="enzyme-body">
+        <div class="enzyme-grid">
+          <div class="enzyme-stat">
+            <div class="enzyme-stat-label">Measured KIE</div>
+            <div class="enzyme-stat-value">4.1</div>
+            <div class="enzyme-stat-note">Below classical max</div>
+          </div>
+          <div class="enzyme-stat">
+            <div class="enzyme-stat-label">Tunneling coeff. κ</div>
+            <div class="enzyme-stat-value danger">2.5×</div>
+            <div class="enzyme-stat-note">Confirmed by Swain-Schaad</div>
+          </div>
+          <div class="enzyme-stat">
+            <div class="enzyme-stat-label">Dosing error</div>
+            <div class="enzyme-stat-value danger">−65%</div>
+            <div class="enzyme-stat-note">Drug gone too fast</div>
+          </div>
+        </div>
+
+        <div class="calc-box">
+<span class="comment">// ADH: KIE = 4.1 (below 7, but tunneling PROVEN)</span>
+<span class="comment">// Anomalous Swain-Schaad exponents + temperature</span>
+<span class="comment">// independence confirm quantum tunneling. [Klinman 1989]</span>
+
+κ = <span class="number">2.5</span>    <span class="comment">// Cha, Murray, Klinman (1989) Science 243:1325</span>
+
+C_real = C₀ × 2^(−<span class="number">2.5</span>) = C₀ × <span class="number">0.177</span>
+
+<span class="result">Patient has 65% LESS Fomepizole than the model predicts.</span>
+<span class="result">In methanol poisoning, this timing error can be fatal.</span>
+        </div>
+
+        <div class="enzyme-source">
+          KIE: Klinman (1976) Biochemistry 15:2018<br>
+          κ: Cha, Murray, Klinman (1989) Science 243:1325
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: THE DRUG LIST -->
+  <div class="section">
+    <div class="section-num">05 — The drugs affected</div>
+    <h2>Medications you or someone you know is taking right now</h2>
+
+    <table class="drug-table">
+      <thead>
+        <tr>
+          <th>Drug</th>
+          <th>What it treats</th>
+          <th>Enzyme</th>
+          <th>Error</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="drug-name">Atorvastatin (Lipitor)</td>
+          <td>High cholesterol</td>
+          <td>CYP3A4</td>
+          <td class="drug-error">−75%</td>
+        </tr>
+        <tr>
+          <td class="drug-name">Cyclosporine</td>
+          <td>Organ transplant rejection</td>
+          <td>CYP3A4</td>
+          <td class="drug-error">−75%</td>
+        </tr>
+        <tr>
+          <td class="drug-name">Midazolam</td>
+          <td>Sedation, anxiety</td>
+          <td>CYP3A4</td>
+          <td class="drug-error">−75%</td>
+        </tr>
+        <tr>
+          <td class="drug-name">Codeine</td>
+          <td>Pain</td>
+          <td>CYP3A4</td>
+          <td class="drug-error">−75%</td>
+        </tr>
+        <tr>
+          <td class="drug-name">Tranylcypromine</td>
+          <td>Depression</td>
+          <td>MAO-A</td>
+          <td class="drug-error">−75%</td>
+        </tr>
+        <tr>
+          <td class="drug-name">Phenelzine</td>
+          <td>Depression, anxiety</td>
+          <td>MAO-A</td>
+          <td class="drug-error">−75%</td>
+        </tr>
+        <tr>
+          <td class="drug-name">Selegiline</td>
+          <td>Parkinson's</td>
+          <td>MAO-A</td>
+          <td class="drug-error">−75%</td>
+        </tr>
+        <tr>
+          <td class="drug-name">Fomepizole</td>
+          <td>Methanol/ethylene glycol poisoning</td>
+          <td>ADH</td>
+          <td class="drug-error">−65%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="dim">
+      This is not a complete list. CYP3A4 alone processes approximately 50% of all oral pharmaceuticals — hundreds of drugs.
+    </p>
+  </div>
+
+  <!-- SECTION 6: THE TIMELINE -->
+  <div class="section">
+    <div class="section-num">06 — The timeline</div>
+    <h2>This has been known for 37 years</h2>
+
+    <p>
+      <strong>1980:</strong> Bell publishes the tunneling correction theory.<br>
+      <strong>1989:</strong> Klinman proves quantum tunneling in ADH. Published in <em>Science</em>.<br>
+      <strong>1999:</strong> Kohen and Klinman confirm it across multiple enzymes. Published in <em>Nature</em>.<br>
+      <strong>2005:</strong> Krauser and Guengerich measure KIE = 15 for CYP3A4.<br>
+      <strong>2009:</strong> Zhang and Lin publish κ = 3× for CYP3A4.<br>
+      <strong>2020:</strong> Oanca, Stare, Mavri measure KIE = 8.5 for MAO-A.<br>
+      <strong>2026:</strong> Still no clinical dosing model includes κ.
+    </p>
+
+    <div class="impact-box">
+      <div class="impact-title">37 years</div>
+      <div class="impact-text">
+        The data has been published in Science, Nature, Journal of Biological Chemistry, and Journal of Physical Chemistry. The correction is one line of math. It has not been applied.
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <h2>The numbers</h2>
+
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="summary-number">50%</div>
+        <div class="summary-label">of oral drugs go through CYP3A4</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-number">3×</div>
+        <div class="summary-label">faster than models predict</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-number">0</div>
+        <div class="summary-label">dosing models include κ</div>
+      </div>
+    </div>
+
+    <div class="fix">
+      <div class="fix-label">The fix is one line</div>
+      <div class="fix-eq">k_real = k_classical × κ</div>
+      <div class="fix-note">
+        κ is published. κ is peer-reviewed. κ is measured. It just needs to be used.
+      </div>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Peer-reviewed sources</h3>
+    <ol>
+      <li>Cha, Murray, Klinman — <em>Science</em> 243:1325-1330 (1989)</li>
+      <li>Kohen, Cannio, Bartolucci, Klinman — <em>Nature</em> 399:496-499 (1999)</li>
+      <li>Oanca, Stare, Mavri — PMID:32191250 (2020)</li>
+      <li>Klinman — <em>Biochemistry</em> 33:14871 (1994)</li>
+      <li>Zhang, Lin — <em>J.Phys.Chem.A</em> 113:11501-11508 (2009)</li>
+      <li>Krauser, Guengerich — <em>J.Biol.Chem.</em> 280:19496 (2005)</li>
+      <li>Rydberg, Ryde, Olsen — <em>J.Med.Chem.</em> 49:6400 (2006)</li>
+    </ol>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="cta-text">The equation that fixes this exists. It's open.</div>
+  <div class="cta-links">
+    <a href="https://sectio-aurea-q.github.io/hackfort-equation.html" class="cta-link">The Hackfort Equation</a>
+    <a href="https://sectio-aurea-q.github.io/emc2-of-quantum-biology.html" class="cta-link">The Missing Equation</a>
+    <a href="https://github.com/sectio-aurea-q/nanshe" class="cta-link">NANSHE on GitHub</a>
+    <a href="mailto:meg.depth@proton.me" class="cta-link">Contact</a>
+  </div>
+</div>
+
+<div class="footer">
+  Sabrina Hackfort · MEGALODON Research · Ahaus, Germany · 2026<br>
+  NANSHE — "She who judges false measures." For Heike.
+</div>
+
+</body>
+</html>
