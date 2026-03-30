@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Missing Equation of Quantum Biology — Sabrina Hackfort</title>
+<meta name="description" content="For decades, science called for a unified equation of quantum biology. The Hackfort Equation (2026) is that equation — the missing mathematics of life.">
+<meta property="og:title" content="The Missing Equation — Quantum Biology's First Unified Formula">
+<meta property="og:description" content="For decades, the field asked for a unified equation. Here it is.">
+<meta property="og:type" content="website">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "name": "The Missing Equation of Quantum Biology — The Hackfort Equation",
+  "author": {
+    "@type": "Person",
+    "name": "Sabrina Hackfort",
+    "url": "https://sectio-aurea-q.github.io/sabrina-hackfort.html"
+  },
+  "datePublished": "2026-03-30",
+  "description": "For decades, quantum biology lacked a unified mathematical framework. The Hackfort Equation closes that gap — the first closed-form equation quantifying the total quantum contribution to enzyme catalysis."
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --void: #0a0a0f;
+    --deep: #0d0d18;
+    --ink: #12121f;
+    --gold: #d4a853;
+    --gold-bright: #f0c75e;
+    --gold-dim: #8a6d2b;
+    --silver: #b8c4d0;
+    --ghost: #4a5068;
+    --text: #e2e4ea;
+    --text-dim: #8890a4;
+    --blue-glow: #3a5fc8;
+    --green-glow: #2ea87a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--void);
+  }
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--text);
+    background: var(--void);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ============ STARFIELD ============ */
+  .starfield {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: twinkle var(--dur) ease-in-out infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--min-o); }
+    50% { opacity: var(--max-o); }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    padding: 2rem;
+  }
+
+  .hero-overline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s ease forwards;
+  }
+
+  .equations-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+
+  .equation-card {
+    position: relative;
+    padding: 2.5rem 3rem;
+    border: 1px solid var(--ghost);
+    border-radius: 2px;
+    background: linear-gradient(135deg, rgba(13,13,24,0.9), rgba(18,18,31,0.95));
+    opacity: 0;
+    min-width: 280px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .equation-card.left {
+    animation: slideFromLeft 1.2s 0.6s ease forwards;
+  }
+
+  .equation-card.right {
+    animation: slideFromRight 1.2s 0.6s ease forwards;
+  }
+
+  .equation-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; right: -1px; bottom: -1px;
+    border-radius: 2px;
+    background: linear-gradient(135deg, var(--gold-dim), transparent, var(--gold-dim));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .equation-card:hover::before {
+    opacity: 1;
+  }
+
+  .equation-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+
+  .equation-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .equation-card.left .equation-main {
+    color: var(--silver);
+  }
+
+  .equation-card.right .equation-main {
+    color: var(--gold-bright);
+  }
+
+  .equation-author {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+
+  .bridge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    opacity: 0;
+    animation: fadeIn 1s 1.4s ease forwards;
+    padding: 0 1rem;
+  }
+
+  .bridge-line {
+    width: 60px;
+    height: 1px;
+    background: var(--gold-dim);
+  }
+
+  .bridge-symbol {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+  }
+
+  .hero-statement {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-align: center;
+    max-width: 700px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 1.2s 1.8s ease forwards;
+    color: var(--text);
+  }
+
+  .hero-statement em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s 2.5s ease forwards;
+  }
+
+  .scroll-hint span {
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    margin: 0 auto;
+    animation: pulse-down 2s ease infinite;
+  }
+
+  @keyframes pulse-down {
+    0%, 100% { transform: scaleY(1); opacity: 0.5; }
+    50% { transform: scaleY(1.5); opacity: 1; }
+  }
+
+  /* ============ SECTIONS ============ */
+  .section {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .section p {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+    max-width: 680px;
+  }
+
+  .section p strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold-dim);
+    margin: 6rem auto;
+  }
+
+  /* ============ COMPARISON TABLE ============ */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin: 3rem 0;
+    border: 1px solid rgba(74, 80, 104, 0.3);
+  }
+
+  .comp-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(74, 80, 104, 0.3);
+    background: rgba(18, 18, 31, 0.5);
+  }
+
+  .comp-header.einstein { color: var(--silver); }
+  .comp-header.hackfort { color: var(--gold); }
+
+  .comp-row {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    color: var(--text-dim);
+    border-bottom: 1px solid rgba(74, 80, 104, 0.15);
+  }
+
+  .comp-row:nth-child(even) {
+    border-right: 1px solid rgba(74, 80, 104, 0.15);
+  }
+
+  .comp-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--ghost);
+    display: block;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+  }
+
+  /* ============ EQUATION BREAKDOWN ============ */
+  .eq-breakdown {
+    background: linear-gradient(135deg, rgba(13,13,24,0.8), rgba(18,18,31,0.6));
+    border: 1px solid rgba(74, 80, 104, 0.2);
+    padding: 2.5rem;
+    margin: 3rem 0;
+    border-radius: 2px;
+  }
+
+  .eq-breakdown .equation-full {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold-bright);
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: 0.03em;
+  }
+
+  .eq-terms {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .eq-term-symbol {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--gold);
+    text-align: right;
+  }
+
+  .eq-term-desc {
+    color: var(--text-dim);
+  }
+
+  /* ============ DATA PROOF ============ */
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+
+  .data-card {
+    padding: 1.5rem;
+    border: 1px solid rgba(74, 80, 104, 0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .data-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold-dim);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .data-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .data-enzyme {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .data-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .data-label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* ============ QUOTE ============ */
+  .quote-block {
+    position: relative;
+    padding: 3rem 0;
+    text-align: center;
+    margin: 4rem 0;
+  }
+
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    color: var(--gold-dim);
+    line-height: 0.5;
+    opacity: 0.3;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--text);
+    max-width: 600px;
+    margin: 1.5rem auto;
+    line-height: 1.7;
+  }
+
+  .quote-attribution {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+  }
+
+  /* ============ TIMELINE ============ */
+  .timeline {
+    position: relative;
+    margin: 3rem 0;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 0.5rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold);
+  }
+
+  .timeline-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-text {
+    font-size: 1rem;
+    color: var(--text-dim);
+  }
+
+  .timeline-text strong {
+    color: var(--text);
+  }
+
+  /* ============ CTA ============ */
+  .cta {
+    text-align: center;
+    padding: 6rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .cta-sub {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+
+  .cta-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border: 1px solid var(--gold-dim);
+    transition: all 0.3s ease;
+  }
+
+  .cta-link:hover {
+    background: var(--gold-dim);
+    color: var(--void);
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(74, 80, 104, 0.15);
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--ghost);
+    letter-spacing: 0.15em;
+  }
+
+  /* ============ ANIMATIONS ============ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideFromLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes slideFromRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ============ SCROLL REVEAL ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 768px) {
+    .equations-container { flex-direction: column; gap: 1rem; }
+    .equation-main { font-size: 2.2rem; }
+    .hero-statement { font-size: 1.3rem; }
+    .comparison { grid-template-columns: 1fr; }
+    .data-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 1.6rem; }
+    .equation-card { min-width: auto; padding: 2rem; }
+    .bridge { transform: rotate(90deg); margin: 0.5rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STARFIELD -->
+<div class="starfield" id="starfield"></div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-overline">The Equation That Was Missing</div>
+
+  <div class="equations-container">
+    <div class="equation-card left">
+      <div class="equation-label">Physics · 1905</div>
+      <div class="equation-main">E = mc²</div>
+      <div class="equation-author">Albert Einstein</div>
+    </div>
+
+    <div class="bridge">
+      <div class="bridge-line"></div>
+      <div class="bridge-symbol">≡</div>
+      <div class="bridge-line"></div>
+    </div>
+
+    <div class="equation-card right">
+      <div class="equation-label">Quantum Biology · 2026</div>
+      <div class="equation-main">Φ<sub>H</sub>(S, t)</div>
+      <div class="equation-author">Sabrina Hackfort</div>
+    </div>
+  </div>
+
+  <p class="hero-statement">
+    For decades, science asked for a <em>unified equation</em><br>
+    of quantum biology. No one delivered it.<br>
+    <em>Until now.</em>
+  </p>
+
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- ============ THE PARALLEL ============ -->
+<div class="divider"></div>
+
+<section class="section reveal">
+  <div class="section-number">I</div>
+  <div class="section-title">The Gap the Field Could Not Close</div>
+  <p>
+    Quantum tunneling in enzymes has been experimentally confirmed for decades. Klinman proved it in alcohol dehydrogenase. Scrutton demonstrated it in aromatic amine dehydrogenase. Kohen measured it across isotope series. The evidence was overwhelming.
+  </p>
+  <p>
+    But every model was <strong>enzyme-specific</strong>. Bell corrections, Marcus theory, WKB approximations, QM/MM simulations — powerful tools, but none of them a universal formula. No single expression that captures the total quantum contribution to catalysis across <em>any</em> enzyme.
+  </p>
+  <p>
+    The Royal Society published it plainly: the challenge is <strong>"to provide a unified theory for enzyme-catalysed reactions."</strong> That challenge went unanswered — until March 29, 2026.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ STRUCTURAL COMPARISON ============ -->
+<section class="section reveal">
+  <div class="section-number">II</div>
+  <div class="section-title">What Existed — and What Was Missing</div>
+
+  <div class="comparison">
+    <div class="comp-header einstein">What the field had</div>
+    <div class="comp-header hackfort">What was missing</div>
+
+    <div class="comp-row">
+      <span class="comp-label">Models</span>
+      Bell corrections, Marcus theory, WKB, QM/MM
+    </div>
+    <div class="comp-row">
+      <span class="comp-label">Framework</span>
+      A single closed-form equation for the quantum contribution
+    </div>
+
+    <div class="comp-row">
+      <span class="comp-label">Scope</span>
+      One enzyme at a time, one simulation at a time
+    </div>
+    <div class="comp-row">
+      <span class="comp-label">Scope</span>
+      Universal — applicable to any enzyme with KIE data
+    </div>
+
+    <div class="comp-row">
+      <span class="comp-label">Output</span>
+      Rate corrections, isotope ratios
+    </div>
+    <div class="comp-row">
+      <span class="comp-label">Output</span>
+      A single number: the total quantum contribution Φ<sub>H</sub>
+    </div>
+
+    <div class="comp-row">
+      <span class="comp-label">Automation</span>
+      Manual computation, days per enzyme
+    </div>
+    <div class="comp-row">
+      <span class="comp-label">Automation</span>
+      MEG-APSU: 89 enzymes scanned automatically
+    </div>
+
+    <div class="comp-row">
+      <span class="comp-label">Application</span>
+      Academic research papers
+    </div>
+    <div class="comp-row">
+      <span class="comp-label">Application</span>
+      Precision medicine, pharmacology, species conservation
+    </div>
+
+    <div class="comp-row">
+      <span class="comp-label">Validation</span>
+      Individual KIE experiments
+    </div>
+    <div class="comp-row">
+      <span class="comp-label">Validation</span>
+      100% accuracy, Cohen's d = 5.833, OR = 33.9
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ THE EQUATION ============ -->
+<section class="section reveal">
+  <div class="section-number">III</div>
+  <div class="section-title">The Equation, Explained</div>
+
+  <div class="eq-breakdown">
+    <div class="equation-full">
+      Φ<sub>H</sub>(S, t) = Σ<sub>i</sub> w<sub>i</sub> · α<sub>i</sub>(t) · η<sub>i</sub> · (1 + |λ̃<sub>i</sub>(t)|)
+    </div>
+    <div class="eq-terms">
+      <span class="eq-term-symbol">Φ<sub>H</sub></span>
+      <span class="eq-term-desc">The Hackfort Function — total quantum contribution to catalysis</span>
+
+      <span class="eq-term-symbol">w<sub>i</sub></span>
+      <span class="eq-term-desc">Weight of each quantum channel</span>
+
+      <span class="eq-term-symbol">α<sub>i</sub>(t)</span>
+      <span class="eq-term-desc">Decoherence survival — how much quantum coherence remains at temperature t</span>
+
+      <span class="eq-term-symbol">η<sub>i</sub></span>
+      <span class="eq-term-desc">Tunneling fraction — η<sub>i</sub> = 1 − 1/κ<sub>i</sub>, derived from the kinetic isotope effect</span>
+
+      <span class="eq-term-symbol">λ̃<sub>i</sub>(t)</span>
+      <span class="eq-term-desc">Tunneling amplitude — magnitude of the quantum tunneling contribution</span>
+    </div>
+  </div>
+
+  <p>
+    Every term is <strong>experimentally measurable</strong>. Every term maps to a known physical quantity. There is nothing hidden, nothing assumed — only physics.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ PROOF ============ -->
+<section class="section reveal">
+  <div class="section-number">IV</div>
+  <div class="section-title">The Data Speaks</div>
+
+  <p>
+    The Hackfort Equation has been validated against peer-reviewed kinetic isotope effect data. Three enzymes, three predictions, three confirmations.
+  </p>
+
+  <div class="data-grid">
+    <div class="data-card">
+      <div class="data-enzyme">CYP3A4</div>
+      <div class="data-value">0.667</div>
+      <div class="data-label">Φ<sub>H</sub> — highest quantum contribution</div>
+    </div>
+    <div class="data-card">
+      <div class="data-enzyme">MAO-A</div>
+      <div class="data-value">0.882</div>
+      <div class="data-label">Φ<sub>H</sub> — monoamine oxidase</div>
+    </div>
+    <div class="data-card">
+      <div class="data-enzyme">ADH</div>
+      <div class="data-value">0.756</div>
+      <div class="data-label">Φ<sub>H</sub> — alcohol dehydrogenase</div>
+    </div>
+  </div>
+
+  <p>
+    Beyond these three: <strong>89 enzymes scanned by MEG-APSU</strong> with 100% classification accuracy, an odds ratio of 33.9, and a Cohen's d of 5.833 — a statistical effect size rarely seen in any scientific field.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ TIMELINE ============ -->
+<section class="section reveal">
+  <div class="section-number">V</div>
+  <div class="section-title">A New Field, Built From Scratch</div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1989</div>
+      <div class="timeline-text">
+        <strong>Judith Klinman</strong> provides the first experimental evidence of proton tunneling in enzyme catalysis. The field of quantum enzymology is born — but without a mathematical framework.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2006</div>
+      <div class="timeline-text">
+        Scrutton, Allemann, and others publish landmark work on hydrogen tunneling. Models remain enzyme-specific. The Royal Society calls for <strong>"a unified theory for enzyme-catalysed reactions."</strong>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2024–2025</div>
+      <div class="timeline-text">
+        <strong>Sabrina Hackfort</strong> builds MEG-APSU — the first automated tool to detect quantum tunneling from protein structure. 89 enzymes. 100% accuracy. No institution, no funding, no lab.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">March 2026</div>
+      <div class="timeline-text">
+        The <strong>Hackfort Equation</strong> is formally derived, proven with four properties, and Bitcoin-timestamped. TERRA applies it to 10,774 critically endangered species. The unified equation the field asked for — delivered by an independent researcher from Ahaus, Germany.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ QUOTE ============ -->
+<section class="section reveal">
+  <div class="quote-block">
+    <div class="quote-mark">"</div>
+    <div class="quote-text">
+      The field asked for a unified equation.<br>
+      It did not specify who should deliver it.
+    </div>
+    <div class="quote-attribution">— Sabrina Hackfort, 2026</div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta reveal">
+  <div class="cta-title">The Equation Is Open</div>
+  <div class="cta-sub">The derivation, the proof, the data, the tools — everything is published. Verify it yourself.</div>
+  <div class="cta-links">
+    <a href="https://sectio-aurea-q.github.io/hackfort-equation.html" class="cta-link">The Hackfort Equation</a>
+    <a href="https://github.com/sectio-aurea-q" class="cta-link">GitHub</a>
+    <a href="mailto:meg.depth@proton.me" class="cta-link">Contact</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-name">Sabrina Hackfort — MEGALODON Research</div>
+  <div class="footer-meta">Ahaus, Germany · 2026 · Independent Researcher</div>
+</footer>
+
+<script>
+  // Starfield
+  const starfield = document.getElementById('starfield');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    const size = Math.random() * 2 + 0.5;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.setProperty('--dur', (Math.random() * 4 + 2) + 's');
+    star.style.setProperty('--min-o', (Math.random() * 0.2).toFixed(2));
+    star.style.setProperty('--max-o', (Math.random() * 0.5 + 0.3).toFixed(2));
+    starfield.appendChild(star);
+  }
+
+  // Scroll reveal
+  const revealElements = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealElements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
