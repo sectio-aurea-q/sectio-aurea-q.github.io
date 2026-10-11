@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The D-Bridge — Sabrina Hackfort</title>
+<meta name="description" content="Where does real water end a Navier–Stokes singularity? An interactive map of the physical walls (thermal noise, hydrogen-bond network, speed of sound, molecules) for H2O and D2O.">
+<meta name="author" content="Sabrina Hackfort">
+<link rel="canonical" href="https://sectio-aurea-q.github.io/d-bridge.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#f3eee2; --paper2:#ebe4d3; --ink:#1d1a16; --sepia:#6b5a45; --faint:#b9ac94; --rubric:#8a1c1c; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ font-size:18px; }
+  body{ background:var(--paper); background-image:radial-gradient(ellipse at center, rgba(255,252,244,.55) 0%, rgba(0,0,0,0) 60%, rgba(120,95,60,.10) 100%);
+        color:var(--ink); font-family:'EB Garamond', Georgia, serif; line-height:1.75; }
+  nav{ display:flex; justify-content:space-between; align-items:baseline; padding:22px 8vw; border-bottom:3px double var(--sepia); }
+  nav a{ color:var(--sepia); text-decoration:none; font-family:'IM Fell English SC', serif; letter-spacing:1px; font-size:.85rem; }
+  nav .name{ font-family:'UnifrakturMaguntia', serif; font-size:1.35rem; color:var(--ink); letter-spacing:0; }
+  article{ max-width:760px; margin:0 auto; padding:64px 20px 110px; }
+  .label{ font-family:'IM Fell English SC', serif; color:var(--sepia); letter-spacing:3px; font-size:.82rem; text-align:center; }
+  h1{ font-family:'UnifrakturMaguntia', serif; font-weight:400; font-size:clamp(2.6rem,7vw,4.4rem); line-height:1.1; text-align:center; margin:14px 0 6px; }
+  .sub{ text-align:center; font-style:italic; color:var(--sepia); font-size:1.08rem; }
+  .meta{ text-align:center; font-family:'IM Fell English SC', serif; color:var(--sepia); font-size:.8rem; letter-spacing:1px; margin-top:14px; }
+  .fleuron{ text-align:center; color:var(--sepia); font-size:1.4rem; margin:38px 0 30px; letter-spacing:14px; }
+  h2{ font-family:'UnifrakturMaguntia', serif; font-weight:400; font-size:2rem; margin:46px 0 14px; }
+  p{ margin:0 0 16px; text-align:justify; hyphens:auto; }
+  .initial::first-letter{ font-family:'UnifrakturMaguntia', serif; float:left; font-size:4.2rem; line-height:.85; padding:6px 10px 0 0; color:var(--rubric); }
+  .defbox{ border:3px double var(--ink); padding:22px 26px; margin:28px 0; background:rgba(255,252,244,.45); }
+  .defbox .t{ font-family:'IM Fell English SC', serif; letter-spacing:1px; margin-bottom:8px; }
+  .formula{ text-align:center; font-size:1.45rem; margin:14px 0 4px; font-style:italic; }
+  .formula b{ font-style:normal; color:var(--rubric); font-weight:500; }
+  .note{ text-align:center; color:var(--sepia); font-size:.9rem; font-style:italic; }
+  figure{ margin:34px 0 10px; }
+  .plate{ border:1px solid var(--sepia); outline:3px double var(--sepia); outline-offset:5px; background:var(--paper); position:relative; overflow:hidden; }
+  #view{ width:100%; height:440px; display:block; cursor:grab; touch-action:none; }
+  #view:active{ cursor:grabbing; }
+  .axis{ position:absolute; font-family:'IM Fell English SC', serif; font-size:.78rem; color:var(--sepia); pointer-events:none; }
+  .ctrl{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-top:18px; font-family:'IM Fell English SC', serif; color:var(--sepia); font-size:.85rem; }
+  .ctrl input{ flex:1; min-width:160px; accent-color:var(--rubric); }
+  .readout{ font-family:'EB Garamond', serif; font-size:1.05rem; color:var(--ink); min-width:220px; }
+  .readout b{ color:var(--rubric); font-weight:600; }
+  figcaption{ font-size:.92rem; color:var(--sepia); font-style:italic; margin-top:14px; text-align:justify; }
+  table{ width:100%; border-collapse:collapse; margin:20px 0 6px; font-size:.95rem; }
+  th{ font-family:'IM Fell English SC', serif; font-weight:400; letter-spacing:.5px; border-top:2px solid var(--ink); border-bottom:1px solid var(--ink); padding:7px 8px; text-align:left; }
+  td{ padding:7px 8px; border-bottom:1px solid var(--faint); }
+  tr:last-child td{ border-bottom:2px solid var(--ink); }
+  .r{ text-align:right; font-variant-numeric:oldstyle-nums tabular-nums; }
+  .cap{ font-size:.88rem; color:var(--sepia); font-style:italic; }
+  pre{ font-family:'Courier New', monospace; font-size:.85rem; background:var(--paper2); border-left:3px solid var(--sepia); padding:12px 16px; overflow-x:auto; margin:14px 0; }
+  a{ color:var(--rubric); }
+  .wrap{ overflow-x:auto; }
+  footer{ text-align:center; border-top:3px double var(--sepia); margin-top:60px; padding-top:20px; font-size:.82rem; color:var(--sepia); font-style:italic; }
+  @media (max-width:600px){ html{ font-size:16.5px; } nav{ padding:16px; } article{ padding:40px 16px 80px; } #view{ height:340px; } p{ text-align:left; } }
+
+  .terms p{ margin-bottom:10px; }
+  .props{ margin:6px 0 16px 22px; }
+  .props li{ margin-bottom:6px; }
+  .stamp{ font-family:'Courier New', monospace; font-size:.75rem; word-break:break-all; }
+
+  .seg{ display:inline-flex; border:1px solid var(--sepia); }
+  .seg button{ font-family:'IM Fell English SC', serif; font-size:.85rem; letter-spacing:.5px; background:transparent; color:var(--sepia); border:0; padding:5px 14px; cursor:pointer; }
+  .seg button[aria-pressed="true"]{ background:var(--ink); color:var(--paper); }
+  .seg button:focus-visible{ outline:2px solid var(--rubric); outline-offset:2px; }
+  .mk{ background:rgba(243,238,226,.88); padding:0 4px; position:absolute; font-family:'EB Garamond', serif; font-style:italic; font-size:.85rem; color:var(--rubric); pointer-events:none; white-space:nowrap; }
+  .old{ background:rgba(243,238,226,.88); padding:0 4px; position:absolute; font-family:'IM Fell English SC', serif; font-size:.78rem; color:var(--ink); pointer-events:none; white-space:nowrap; }
+  .eq{ text-align:center; font-size:1.3rem; font-style:italic; margin:18px 0 6px; }
+  .eq b{ font-style:normal; color:var(--rubric); font-weight:500; }
+  .rx{ font-family:'IM Fell English SC', serif; font-size:.92em; -webkit-text-stroke:.03em currentColor; }
+  td.r, th.r{ white-space:nowrap; }
+
+  #map{ width:100%; height:auto; display:block; }
+  #map text{ font-family:'EB Garamond', serif; fill:#1d1a16; }
+  #map .ax{ font-family:'IM Fell English SC', serif; font-size:13px; fill:#6b5a45; }
+  #map .tick{ font-size:13px; fill:#6b5a45; }
+  #map .wl{ font-style:italic; font-size:15px; }
+  @media (max-width:600px){ #map .tick{ font-size:20px; } #map .wl{ font-size:22px; } #map .ax{ font-size:19px; } }
+  .legend2{ display:flex; flex-wrap:wrap; gap:6px 18px; font-size:.9rem; color:var(--sepia); margin-top:10px; }
+  .legend2 span{ white-space:nowrap; }
+  .sw{ display:inline-block; width:26px; height:0; border-top:2px solid var(--ink); vertical-align:middle; margin-right:6px; }
+  .rx{ font-family:'IM Fell English SC', serif; font-size:.92em; -webkit-text-stroke:.03em currentColor; }
+  .stat{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px 18px; margin:14px 0 4px; }
+  .stat div{ border-top:1px solid var(--faint); padding-top:6px; }
+  .stat .k{ font-family:'IM Fell English SC', serif; color:var(--sepia); font-size:.78rem; letter-spacing:.5px; }
+  .stat .v{ font-size:1.15rem; }
+  .stat .v b{ color:var(--rubric); font-weight:600; }
+  .ctrl label{ white-space:nowrap; }
+  .seg button:focus-visible, .ctrl input:focus-visible{ outline:2px solid var(--rubric); outline-offset:2px; }
+</style>
+</head>
+<body>
+<nav>
+  <a class="name" href="sabrina-hackfort.html">Sabrina Hackfort</a>
+  <span><a href="hackfort-equation.html">Hackfort</a> &nbsp;·&nbsp; <a href="zeno.html">Zeno</a> &nbsp;·&nbsp; <a href="radix-riemanniana.html">Radix</a></span>
+</nav>
+<article>
+  <div class="label">Fluid Physics · Anno MMXXVI</div>
+  <h1>The D-Bridge</h1>
+  <div class="sub">Where real water ends a Navier–Stokes singularity, and why heavy water ends it elsewhere</div>
+  <div class="meta">Sabrina Hackfort · Independent Researcher · ORCID 0009-0007-7458-2487</div>
+  <div class="fleuron">❦ ❦ ❦</div>
+
+  <p class="initial">In September 2026 it was reported that the Navier–Stokes equations, driven by a smooth force, can form a singularity in finite time: a vortex that collapses until its speed becomes infinite. The proofs are still being checked. They concern the <em>equations</em>, which treat water as a smooth, silent, incompressible continuum. Real water is none of these on the smallest scales. It trembles with heat, its molecules are held in a network of hydrogen bonds that springs back like a gel for about a picosecond, sound travels through it at a finite speed, and it is made of molecules 0.28 nm apart. Long before infinity, one of these walls must take over. Which one comes first, and does it matter whether the bridges are made of hydrogen or of deuterium?</p>
+
+  <h2>The Map</h2>
+  <p>Each line is a wall: below it, the Navier–Stokes description of water no longer holds. The collapsing vortex starts at the top and shrinks downward. Its strength is the local Reynolds number c = U·L/ν, which the known constructions keep constant, let grow, or let fall. Where its path first meets a wall, real water takes over.</p>
+  <figure>
+    <div class="plate"><svg id="map" viewBox="0 0 760 520" role="img" aria-label="Log-log map of vortex width against strength with the physical walls for water"></svg></div>
+    <div class="legend2" aria-hidden="true">
+      <span><i class="sw"></i>thermal noise</span>
+      <span><i class="sw" style="border-top-style:dashed"></i>hydrogen-bond network</span>
+      <span><i class="sw" style="border-top:3px double var(--ink)"></i>speed of sound</span>
+      <span><i class="sw" style="border-top-style:dotted"></i>molecular spacing</span>
+      <span><i class="sw" style="border-top-color:#8a1c1c"></i>path of the collapse</span>
+    </div>
+    <div class="ctrl">
+      <span class="seg" role="group" aria-label="Water"><button id="wH" aria-pressed="true">H₂O</button><button id="wD" aria-pressed="false">D₂O</button></span>
+      <span class="seg" role="group" aria-label="Type of collapse"><button id="pK" aria-pressed="true">c constant</button><button id="pG" aria-pressed="false">c grows</button><button id="pF" aria-pressed="false">c falls</button></span>
+    </div>
+    <div class="ctrl">
+      <label for="cs">Starting strength c</label>
+      <input id="cs" type="range" min="-200" max="300" value="0" aria-label="Starting strength c, logarithmic">
+      <span class="readout" id="cv"></span>
+      <button id="go" class="seg" style="padding:5px 14px;background:transparent;border:1px solid var(--sepia);font-family:'IM Fell English SC',serif;color:var(--sepia);cursor:pointer">collapse ▸</button>
+    </div>
+    <div class="stat" id="st"></div>
+    <figcaption>Water at 25 °C. The faint lines are the walls of the other isotope, for comparison. "c constant" follows the scaling seen in Hou's computations, "c grows" the forced construction of September 2026 (growth exaggerated for visibility; the paper's exponent is below 1/100), "c falls" the constructions with bounded velocity. Heat estimate ΔT ≈ U²/c<sub>p</sub>, an order of magnitude only.</figcaption>
+  </figure>
+
+  <h2>What the Map Shows</h2>
+  <p><em>Weak collapses</em> are taken over by thermal noise: the molecules tremble faster than the vortex turns. <em>Strong collapses</em> outrun the speed of sound and stop being incompressible, for very strong ones already at tens of nanometres. Between them lies a narrow window, roughly 0.13 &lt; c &lt; 2, where the hydrogen-bond network is the first to give way, at one to four molecular spacings.</p>
+  <p>The isotope leaves a fingerprint with a sign. In heavy water the bridges relax about a quarter more slowly and the viscosity is higher, so strong collapses leave the Navier–Stokes world about 18–19 % <em>earlier</em>. Weak collapses leave it about 27 % <em>later</em>, because the denser, more viscous heavy water trembles less relative to the flow. One substance, two kinds of singularity, opposite shifts.</p>
+
+  <h2>What It Does Not Claim</h2>
+  <p>This is an order-of-magnitude map, not a theorem. That the equations stop describing water does not mean the singularity is healed: for elastic liquid models no such regularisation is proven, and relaxation can even create blow-up. The strength c of the September 2026 constructions is not given as a number in their papers. In the hydrogen-bond window, the scales are so close to the molecular spacing that the continuum picture is doubtful anyway. The relaxation time of heavy water is scaled from its measured isotope ratio, and its speed of sound is interpolated between measurements. In a first search no earlier work treating hydrogen bonds or the H₂O/D₂O difference as the physical end of a Navier–Stokes singularity was found; the search was not exhaustive.</p>
+
+  <h2>Sources</h2>
+  <p class="cap">Hydrogen-bond relaxation 0.84 ps: Schulz, Schlaich, Heyden, Netz, Kappler, Phys. Rev. Fluids 5, 103301 (2020), arXiv 2003.08309 · Viscosity of heavy water: IAPWS R16-17 and Assael et al., J. Phys. Chem. Ref. Data 50, 033102 (2021) · Speed of sound in D₂O: Lago et al., Fluid Phase Equilib. (2020) · Isotope ratio of relaxation ≈ 1.2: Ryzhov et al., arXiv 2509.09462 · Thermal noise: Bandak, Eyink, Mailybaev, Goldenfeld, arXiv 2107.03184 · Physical completion of Navier–Stokes: Braunstein, arXiv 2605.21357 · Continuum limit of water: Bocquet &amp; Charlaix, arXiv 0909.0628 · Blow-up constructions: OpenAI (2026), Alpöge–Buckmaster–Coiculescu arXiv 2609.16470, Córdoba &amp; Martínez-Zoroa arXiv 2309.08495, Hou arXiv 2107.06509 · Viscoelastic blow-up: Hu &amp; Racke arXiv 2307.00987.</p>
+
+  <footer>© 2026 Sabrina Hackfort · An AI assistant (Claude, Anthropic) was used in preparing this work.</footer>
+</article>
+<script>
+(function(){
+  const kB=1.380649e-23, T=298.15, Lmol=0.28e-9;
+  const W={H:{n:'H₂O',rho:997.05,mu:0.8900e-3,tau:0.84e-12,cs:1496.7,cp:4181},
+           D:{n:'D₂O',rho:1105.0,mu:1.0926e-3,tau:1.05e-12,cs:1396.2,cp:4212}};
+  for(const k in W){ W[k].nu=W[k].mu/W[k].rho; }
+  const Lth=(w,c)=>kB*T/(w.rho*c*c*w.nu*w.nu), Lve=(w,c)=>Math.sqrt(c*w.nu*w.tau), Lc=(w,c)=>c*w.nu/w.cs;
+  const walls=w=>[{id:'th',name:'thermal noise',f:c=>Lth(w,c),dash:''},{id:'ve',name:'hydrogen-bond network',f:c=>Lve(w,c),dash:'7 5'},
+                  {id:'cs',name:'speed of sound',f:c=>Lc(w,c),dash:'',dbl:true},{id:'mol',name:'molecular spacing',f:c=>Lmol,dash:'2 4'}];
+  // Achsen
+  const X0=70,X1=740,Y0=20,Y1=470, cmin=-2,cmax=3, lmin=-10.3,lmax=-6;
+  const xs=c=>X0+(Math.log10(c)-cmin)/(cmax-cmin)*(X1-X0), ys=L=>Y1-(Math.log10(L)-lmin)/(lmax-lmin)*(Y1-Y0);
+  const svg=document.getElementById('map'), NS='http://www.w3.org/2000/svg';
+  const el=(t,a,p)=>{const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); (p||svg).appendChild(e); return e;};
+  let water='H', ptype='K', cstart=1, anim=null;
+  const sl=document.getElementById('cs'), cv=document.getElementById('cv'), st=document.getElementById('st');
+  function fmtL(L){ return L>=1e-6? (L*1e6).toFixed(2)+' µm' : (L*1e9>=10? (L*1e9).toFixed(0): (L*1e9).toFixed(2))+' nm'; }
+  const fmt=(x,d)=>x.toFixed(d).replace('.',',');
+  function cpath(L){ const L0=1e-6; if(ptype==='K') return cstart; if(ptype==='G') return cstart*Math.pow(L/L0,-0.1); return cstart*(L/L0); }
+  function stopFor(wk){ const w=W[wk], ws=walls(w); let L=1e-6;
+    for(let i=0;i<4000;i++){ const c=cpath(L); for(const q of ws){ if(L<=q.f(c)) return {L,c,wall:q,w}; } L*=Math.pow(10,-0.002); if(L<1e-11) break; }
+    return null; }
+  function draw(prog){
+    svg.innerHTML='';
+    const g=el('g',{});
+    // Raster
+    for(let e=cmin;e<=cmax;e++){ el('line',{x1:xs(10**e),x2:xs(10**e),y1:Y0,y2:Y1,stroke:'#d8cdb6','stroke-width':1},g);
+      el('text',{x:xs(10**e),y:Y1+18,'text-anchor':'middle',class:'tick'},g).textContent=e===0?'1':(e>0?'10'+['','','²','³'][e]:'10⁻'+['','¹','²'][-e]); }
+    [[1e-10,'0.1 nm'],[1e-9,'1 nm'],[1e-8,'10 nm'],[1e-7,'100 nm'],[1e-6,'1 µm']].forEach(([L,t])=>{ el('line',{x1:X0,x2:X1,y1:ys(L),y2:ys(L),stroke:'#d8cdb6','stroke-width':1},g);
+      el('text',{x:X0-8,y:ys(L)+4,'text-anchor':'end',class:'tick'},g).textContent=t; });
+    el('rect',{x:X0,y:Y0,width:X1-X0,height:Y1-Y0,fill:'none',stroke:'#6b5a45','stroke-width':1.2},g);
+    el('text',{x:(X0+X1)/2,y:Y1+40,'text-anchor':'middle',class:'ax'},g).textContent='strength of the vortex  c = U·L/ν  →';
+    const yl=el('text',{x:18,y:(Y0+Y1)/2,'text-anchor':'middle',class:'ax',transform:`rotate(-90 18 ${(Y0+Y1)/2})`},g); yl.textContent='width of the vortex L  →';
+    el('text',{x:X0+12,y:Y0+22,class:'wl'},g).textContent='Navier–Stokes holds';
+    // Wände: andere Isotope blass, gewählte kräftig
+    const clip=el('clipPath',{id:'cp'}); el('rect',{x:X0,y:Y0,width:X1-X0,height:Y1-Y0},clip);
+    for(const wk of ['H','D']){ const w=W[wk], on=(wk===water);
+      walls(w).forEach(q=>{ let d=''; for(let i=0;i<=200;i++){ const c=10**(cmin+(cmax-cmin)*i/200); d+=(i?'L':'M')+xs(c).toFixed(1)+' '+ys(q.f(c)).toFixed(1); }
+        const a={d,fill:'none',stroke:'#1d1a16','stroke-width':on?(q.dbl?3.2:1.8):1,'stroke-dasharray':q.dash,opacity:on?1:0.28,'clip-path':'url(#cp)'};
+        el('path',a,g); if(q.dbl&&on) el('path',Object.assign({},a,{'stroke-width':1,stroke:'#f3eee2'}),g); });
+    }
+    // Hülle (erste Wand) schattieren
+    const w=W[water]; let env='M'+xs(10**cmin)+' '+Y1;
+    for(let i=0;i<=200;i++){ const c=10**(cmin+(cmax-cmin)*i/200); const L=Math.max(...walls(w).map(q=>q.f(c))); env+='L'+xs(c).toFixed(1)+' '+Math.max(Y0,ys(L)).toFixed(1); }
+    env+='L'+X1+' '+Y1+'Z'; el('path',{d:env,fill:'#6b5a45',opacity:0.10,'clip-path':'url(#cp)'},g);
+    // Wand-Beschriftungen
+    const lab=(t,c,L,dy)=>{ const x=xs(c), y=ys(L); if(y<Y0+10||y>Y1-6) return; el('text',{x,y:y+(dy||-6),'text-anchor':'middle',class:'wl'},g).textContent=t; };
+    lab('thermal noise',0.03,Lth(w,0.03),-8); lab('hydrogen bonds',0.5,Lve(w,0.5),18); lab('speed of sound',150,Lc(w,150),-8); lab('molecules',0.02,Lmol,16);
+    // Pfad
+    const s=stopFor(water); let d=''; let L=1e-6, n=0;
+    const Lend=s?s.L:1e-11, frac=(prog===undefined?1:prog);
+    const Lstop=Math.exp(Math.log(1e-6)+(Math.log(Lend)-Math.log(1e-6))*frac);
+    while(L>=Lstop){ const c=cpath(L); d+=(n++?'L':'M')+xs(c).toFixed(1)+' '+ys(L).toFixed(1); L*=Math.pow(10,-0.01); }
+    el('path',{d,fill:'none',stroke:'#8a1c1c','stroke-width':2.4,'clip-path':'url(#cp)'},g);
+    const cc=cpath(Lstop); el('circle',{cx:xs(cc),cy:ys(Lstop),r:6,fill:'#8a1c1c',stroke:'#f3eee2','stroke-width':2},g);
+    if(frac>=1&&s){ const U=s.c*s.w.nu/s.L; const tx=xs(s.c)+(xs(s.c)>X1-230?-12:12);
+      el('text',{x:tx,y:ys(s.L)+4,'text-anchor':xs(s.c)>X1-230?'end':'start',class:'wl',style:'fill:#8a1c1c'},g).textContent='→ '+s.wall.name; }
+    // Kennzahlen
+    const o=stopFor(water==='H'?'D':'H');
+    if(s){ const U=s.c*s.w.nu/s.L, M=U/s.w.cs, dT=U*U/s.w.cp;
+      st.innerHTML=`<div><div class="k">${s.w.n}: wall reached</div><div class="v"><b>${s.wall.name}</b></div></div>
+        <div><div class="k">width</div><div class="v">${fmtL(s.L)}</div></div>
+        <div><div class="k">speed · Mach</div><div class="v">${U<10?fmt(U,2):Math.round(U)} m/s · ${fmt(M,2)}</div></div>
+        <div><div class="k">heating (order)</div><div class="v">~${dT<1?fmt(dT,2):Math.round(dT)} K</div></div>
+        <div><div class="k">${o.w.n} instead</div><div class="v">${o.wall.name}, ${fmtL(o.L)} <span class="cap">(${(o.L>s.L?'+':'')+Math.round((o.L/s.L-1)*100)} %)</span></div></div>`; }
+  }
+  function setC(){ cstart=10**(sl.value/100); cv.textContent='c = '+(cstart<1?fmt(cstart,cstart<0.1?3:2):cstart<10?fmt(cstart,1):Math.round(cstart)); draw(); }
+  function pressed(ids,on){ ids.forEach(i=>document.getElementById(i).setAttribute('aria-pressed',i===on)); }
+  document.getElementById('wH').onclick=()=>{water='H';pressed(['wH','wD'],'wH');draw();};
+  document.getElementById('wD').onclick=()=>{water='D';pressed(['wH','wD'],'wD');draw();};
+  [['pK','K'],['pG','G'],['pF','F']].forEach(([id,t])=>document.getElementById(id).onclick=()=>{ptype=t;pressed(['pK','pG','pF'],id);draw();});
+  sl.addEventListener('input',setC);
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('go').onclick=()=>{ if(reduce){draw();return;} cancelAnimationFrame(anim); const t0=performance.now();
+    const step=t=>{ const p=Math.min(1,(t-t0)/2200); draw(p*p*(3-2*p)); if(p<1) anim=requestAnimationFrame(step); }; anim=requestAnimationFrame(step); };
+  setC();
+})();
+</script>
+</body>
+</html>
