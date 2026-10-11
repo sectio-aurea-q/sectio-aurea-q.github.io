@@ -486,6 +486,8 @@
       .tools-grid { grid-template-columns: 1fr; }
       .numbers-section { grid-template-columns: repeat(2, 1fr); }
     }
+    .tool-card.wide { grid-column: 1 / -1; }
+    .eq-link { color: #c4a35a; }
   </style>
 </head>
 
@@ -531,16 +533,17 @@
     </div>
     <p class="equation-desc" style="margin-top: 20px;">
       Proven properties: non-negative, dimensionless, bounded, with a complete formal proof. 
-      Falsifiable predictions for enzyme kinetics under inhibition, biodiversity loss quantification, 
-      and cryptographic vulnerability assessment.
+      Falsifiable predictions for enzyme kinetics; first check against QM/MM data for formate dehydrogenase
+      (η = 0.80 at 300 K). Extensions to biodiversity and cryptography are open hypotheses.
+      <a class="eq-link" href="hackfort-equation.html">Full page, with corrections →</a>
     </p>
   </section>
 
   <!-- ════ BY THE NUMBERS ════ -->
   <section class="numbers-section">
     <div class="number-block">
-      <div class="number">55</div>
-      <div class="number-label">Enzymes classified<br>100% accuracy</div>
+      <div class="number">92.5%</div>
+      <div class="number-label">MEG-APSU v1.3<br>frozen blind test</div>
     </div>
     <div class="number-block">
       <div class="number">10,774</div>
@@ -551,8 +554,8 @@
       <div class="number-label">PQ-TLS systems<br>downgradeable</div>
     </div>
     <div class="number-block">
-      <div class="number">5.833</div>
-      <div class="number-label">Cohen's d<br>MEG-APSU</div>
+      <div class="number">4,151</div>
+      <div class="number-label">Elliptic curves<br>certified · Radix</div>
     </div>
   </section>
 
@@ -560,6 +563,15 @@
   <section class="tools-section">
     <div class="section-label">Research Tools — All Built in Rust</div>
     <div class="tools-grid">
+      <div class="tool-card wide">
+        <div class="tool-name"><a href="radix-riemanniana.html" style="color:inherit;text-decoration:none">RADIX RIEMANNIANA</a></div>
+        <div class="tool-version">Number Theory · radix-rank</div>
+        <div class="tool-desc">
+          The reproducing kernel of the Weil form, built from the primes alone. Chooses, for each elliptic curve,
+          the optimal test function for bounding its analytic rank. Every bound certified with ball arithmetic.
+        </div>
+        <div class="tool-stat">4,151 curves · 8–23% fewer primes · never worse than the fixed kernel</div>
+      </div>
       <div class="tool-card">
         <div class="tool-name">MEG-APSU</div>
         <div class="tool-version">Quantum Enzyme Classifier</div>
@@ -568,7 +580,7 @@
           using kinetic isotope effects and tunneling transmission coefficients.
           35.7% of 115 FDA targets identified as quantum-critical.
         </div>
-        <div class="tool-stat">Cohen's d = 5.833 · 100% accuracy · 55 enzymes</div>
+        <div class="tool-stat">v1.3 · 92.5% on a frozen blind test set (40 proteins, family split)</div>
       </div>
       <div class="tool-card">
         <div class="tool-name">TERRA</div>
@@ -581,14 +593,14 @@
         <div class="tool-stat">v0.5.0 · 34 modules · Record: 9 QC enzymes (A. scutulata)</div>
       </div>
       <div class="tool-card">
-        <div class="tool-name">NANSHE</div>
-        <div class="tool-version">Quantum Dosing Error Calculator</div>
+        <div class="tool-name">ZENO</div>
+        <div class="tool-version">Tunneling &amp; Deuteration Toolkit</div>
         <div class="tool-desc">
-          Calculates pharmacological dosing errors caused by ignoring 
-          quantum tunneling in drug metabolism. Pure Rust, zero dependencies. 
-          Named after the Sumerian goddess of false measures.
+          Computes the quantum fraction η = 1 − 1/κ of the Hackfort Equation (Eckart tunneling).
+          ZENO-DX predicts the real benefit of deuterating a drug after metabolic switching.
+          Successor of NANSHE, whose dosing-error claim is withdrawn.
         </div>
-        <div class="tool-stat">v0.1.0 · CYP3A4 covers ~50% of all oral drugs</div>
+        <div class="tool-stat">Deutetrabenazine: ×1.8–2.2 predicted · ×2.0 observed</div>
       </div>
       <div class="tool-card">
         <div class="tool-name">VÄRN-60</div>
@@ -658,9 +670,16 @@
     <div class="section-label">Publications & Preprints</div>
     <div class="pub-list">
       <div class="pub-item">
+        <div class="pub-type">Preprint · October 2026</div>
+        <div class="pub-title"><a href="radix-riemanniana.html" style="color:inherit">Optimal windowed test functions for bounding analytic ranks of elliptic curves</a></div>
+        <div class="pub-venue">Introduces the Radix Riemanniana · code and certificates:
+          <a href="https://github.com/sectio-aurea-q/radix-rank">github.com/sectio-aurea-q/radix-rank</a></div>
+      </div>
+      <div class="pub-item">
         <div class="pub-type">Preprint · 2026</div>
         <div class="pub-title">The Hackfort Equation: A Mathematical Framework for Quantum Criticality in Biological, Pharmacological, and Cryptographic Systems</div>
-        <div class="pub-venue">MEGALODON Research · Bitcoin-timestamped March 2026</div>
+        <div class="pub-venue">MEGALODON Research · Bitcoin-timestamped March 2026 ·
+          <a href="hackfort-equation.html">read online</a></div>
       </div>
       <div class="pub-item">
         <div class="pub-type">Preprint · bioRxiv 2026</div>
