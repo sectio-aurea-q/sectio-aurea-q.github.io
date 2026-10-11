@@ -486,7 +486,7 @@
       .tools-grid { grid-template-columns: 1fr; }
       .numbers-section { grid-template-columns: repeat(2, 1fr); }
     }
-    .tool-card.wide { grid-column: 1 / -1; }
+    .tool-card.wide, .tools-grid .tool-card:last-child { grid-column: 1 / -1; }
     .eq-link { color: #c4a35a; }
   </style>
 </head>
@@ -571,6 +571,15 @@
           the optimal test function for bounding its analytic rank. Every bound certified with ball arithmetic.
         </div>
         <div class="tool-stat">4,151 curves · 8–23% fewer primes · never worse than the fixed kernel</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name"><a href="d-bridge.html" style="color:inherit;text-decoration:none">THE D-BRIDGE</a></div>
+        <div class="tool-version">Fluid Physics · interactive map</div>
+        <div class="tool-desc">
+          Where does real water end a Navier–Stokes singularity? Thermal noise, the hydrogen-bond network,
+          the speed of sound or the molecules — and why heavy water (D₂O) shifts the answer, in opposite directions.
+        </div>
+        <div class="tool-stat">Order-of-magnitude estimate · H₂O vs D₂O · sourced data</div>
       </div>
       <div class="tool-card">
         <div class="tool-name">MEG-APSU</div>
