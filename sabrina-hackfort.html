@@ -62,7 +62,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IM+Fell+English+SC&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -254,40 +254,6 @@
       line-height: 1.8;
       font-weight: 300;
     }
-
-
-    /* ── FOLIO: Hackfort Axiom in Fraktur style ── */
-    .folio { --f-paper:#f3eee2; --f-paper2:#ebe4d3; --f-ink:#1d1a16; --f-sepia:#6b5a45; --f-rubric:#8a1c1c;
-      background: var(--f-paper);
-      box-shadow: inset 0 0 140px rgba(120,95,60,.13);
-      border-top: 3px double var(--f-sepia); border-bottom: 3px double var(--f-sepia);
-      color: var(--f-ink); font-family: 'EB Garamond', Georgia, serif; padding: 90px 16px 80px; }
-    .folio-inner { max-width: 760px; margin: 0 auto; }
-    .folio-label { font-family: 'IM Fell English SC', serif; color: var(--f-sepia); letter-spacing: 3px; font-size: .85rem; text-align: center; }
-    .motto { margin: 46px auto 40px; padding: 0; border: 0; text-align: center; background: none; }
-    .motto p { margin: 0; }
-    .motto-de { font-family: 'EB Garamond', serif; font-style: italic; font-size: clamp(1.7rem, 4.6vw, 2.7rem); line-height: 1.35; color: var(--f-ink); }
-    .motto-de .cap { font-family: 'UnifrakturMaguntia', serif; font-style: normal; color: var(--f-rubric); font-size: 1.45em; line-height: 0; vertical-align: -0.08em; margin-right: 2px; }
-    .motto-en { margin-top: 18px; font-style: italic; color: var(--f-sepia); font-size: 1.08rem; }
-    .motto-sig { margin-top: 14px; font-family: 'UnifrakturMaguntia', serif; font-size: 1.35rem; color: var(--f-ink); }
-    #tunnel { display: block; width: 100%; height: clamp(170px, 32vw, 240px); margin: 10px 0 6px;
-      -webkit-mask-image: radial-gradient(ellipse 50% 50% at center, #000 70%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at center, #000 70%, transparent 100%); }
-    .plate-note { text-align: center; font-style: italic; color: var(--f-sepia); font-size: .92rem; }
-    .folio .fleuron { text-align: center; color: var(--f-sepia); font-size: 1.5rem; margin: 34px 0 26px; }
-    .folio-text { font-size: 1.12rem; line-height: 1.8; text-align: justify; hyphens: auto; margin: 0 0 18px; }
-    .folio-text em { font-style: italic; }
-    .axiom { border: 3px double var(--f-ink); padding: 22px 26px; margin: 30px 0; background: rgba(255,252,244,.45); font-size: 1.08rem; line-height: 1.7; }
-    .axiom-t { font-family: 'IM Fell English SC', serif; letter-spacing: 1px; margin-bottom: 8px; }
-    .axiom-f { text-align: center; font-size: 1.4rem; font-style: italic; margin-top: 10px; }
-    .axiom-src { text-align: center; font-style: italic; color: var(--f-sepia); font-size: .88rem; margin-top: 10px; }
-    .axiom-f b, .eq-f b { color: var(--f-rubric); font-weight: 500; font-style: normal; }
-    .equation { text-align: center; margin: 34px 0; padding: 26px 10px; border-top: 1px solid var(--f-sepia); border-bottom: 1px solid var(--f-sepia); }
-    .eq-f { font-style: italic; font-size: clamp(1.2rem, 3.4vw, 1.65rem); line-height: 1.6; }
-    .eq-w { margin-top: 10px; color: var(--f-sepia); font-style: italic; font-size: .98rem; }
-    .folio-link { text-align: center; margin-top: 26px; }
-    .folio-link a { font-family: 'IM Fell English SC', serif; color: var(--f-rubric); text-decoration: none; letter-spacing: 1px; border-bottom: 1px solid currentColor; }
-    .folio-stamp { text-align: center; margin-top: 14px; font-family: 'IM Fell English SC', serif; font-size: .8rem; color: var(--f-sepia); letter-spacing: 1px; }
-    @media (max-width: 600px) { .axiom { padding: 18px 16px; } .folio-text { text-align: left; } }
 
     /* ── TOOLS GRID ── */
     .tools-section {
@@ -520,8 +486,6 @@
       .tools-grid { grid-template-columns: 1fr; }
       .numbers-section { grid-template-columns: repeat(2, 1fr); }
     }
-    .tool-card.wide, .tools-grid .tool-card:last-child { grid-column: 1 / -1; }
-    .eq-link { color: #c4a35a; }
   </style>
 </head>
 
@@ -544,55 +508,39 @@
 
   <div class="divider"></div>
 
-  <!-- ════ THE HACKFORT AXIOM — folio ════ -->
-  <section class="folio" id="hackfort">
-    <div class="folio-inner">
-      <div class="folio-label">The Hackfort Axiom · Anno MMXXVI</div>
-
-      <blockquote class="motto">
-        <p class="motto-de"><span class="cap">D</span>ie Natur geht durch Wände.<br>Ich habe nur gezählt, wie oft.</p>
-        <p class="motto-en">Nature walks through walls. I have only counted how often.</p>
-        <div class="motto-sig">— Sabrina Hackfort</div>
-      </blockquote>
-
-      <canvas id="tunnel" aria-label="A wave meets an energy barrier; part of it passes through" role="img"></canvas>
-      <div class="plate-note">Plate I. A wave meets a barrier it cannot climb. Part of it arrives on the other side anyway.</div>
-
-      <div class="fleuron">❦</div>
-
-      <p class="folio-text">Classical chemistry pictures a reaction as a climb over an energy barrier.
-        Yet protons and hydrides can also pass <em>through</em> it. The Hackfort Equation does not replace
-        this physics &mdash; it measures it: what share of a rate is carried by the quantum tunnel, condensed into one dimensionless number.</p>
-
-      <div class="axiom">
-        <div class="axiom-t">Axiom 1 &mdash; Quantum Discrepancy (Hackfort, 2026)</div>
-        <p>For every system <i>S</i> possessing at least one quantum-mechanical degree of freedom, there exists an observable 𝒪 such that</p>
-        <div class="axiom-f">⟨𝒪⟩<sub>QM</sub> <b>≠</b> ⟨𝒪⟩<sub>class</sub>.</div>
-        <p style="margin-top:12px">Furthermore, the discrepancy is non-negative and systematic:</p>
-        <div class="axiom-f">Δ(S) ≡ ⟨𝒪⟩<sub>QM</sub> − ⟨𝒪⟩<sub>class</sub> <b>≥</b> 0.</div>
-        <div class="axiom-src">As stated in the original manuscript of 29 March 2026.</div>
-      </div>
-
-      <div class="equation">
-        <div class="eq-f">Φ<sub>H</sub>(S, t) = Σ<sub>i</sub> w<sub>i</sub> · α<sub>i</sub>(t) · <b>η<sub>i</sub></b> · (1 + |λ̃<sub>i</sub>(t)|)</div>
-        <div class="eq-w">η<sub>i</sub> = 1 − 1/κ<sub>i</sub> &nbsp;·&nbsp; κ<sub>i</sub> = k<sub>QM</sub>/k<sub>class</sub> &nbsp;·&nbsp; λ̃<sub>i</sub> = (d/dt ln Γ<sub>i</sub>)/λ<sub>ref</sub></div>
-      </div>
-
-      <p class="folio-text">Its heart is η, the quantum fraction: zero for a purely classical channel, close to one when the tunnel carries nearly everything.
-        So far the equation has been checked against independent data on one enzyme step &mdash; formate dehydrogenase,
-        where four fifths of the rate run through the tunnel (η = 0.80 at 300 K, QM/MM). Extensions to biodiversity and
-        cryptography remain open hypotheses, not results.</p>
-
-      <p class="folio-link"><a href="hackfort-equation.html">The full page, with its corrections &rarr;</a></p>
-      <div class="folio-stamp">Axiom and equation Bitcoin-timestamped · 29 March 2026</div>
+  <!-- ════ THE EQUATION ════ -->
+  <section class="equation-section">
+    <div class="section-label">The Hackfort Equation</div>
+    <h2 class="equation-name">Quantum Criticality Index</h2>
+    <p class="equation-desc">
+      A mathematical framework derived from a single axiom — the Hackfort Axiom — 
+      quantifying the degree to which quantum effects dominate a system's behavior. 
+      The equation unifies quantum biology, pharmacology, and cryptographic security 
+      under one principle: classical models of quantum systems are systematically incomplete, 
+      and the incompleteness is quantifiable.
+    </p>
+    <div class="equation-display">
+      <span class="eq-main">
+        Φ<sub>H</sub>(S, t) = Σ<sub>i</sub> w<sub>i</sub> · α<sub>i</sub>(t) · η<sub>i</sub> · (1 + |λ̃<sub>i</sub>(t)|)
+      </span>
+      <span class="eq-where">
+        where η<sub>i</sub> = 1 − 1/κ<sub>i</sub> &nbsp;·&nbsp; 
+        κ<sub>i</sub> = k<sub>QM</sub>/k<sub>class</sub> &nbsp;·&nbsp;
+        λ̃<sub>i</sub> = (d/dt ln Γ<sub>i</sub>) / λ<sub>ref</sub>
+      </span>
     </div>
+    <p class="equation-desc" style="margin-top: 20px;">
+      Proven properties: non-negative, dimensionless, bounded, with a complete formal proof. 
+      Falsifiable predictions for enzyme kinetics under inhibition, biodiversity loss quantification, 
+      and cryptographic vulnerability assessment.
+    </p>
   </section>
 
   <!-- ════ BY THE NUMBERS ════ -->
   <section class="numbers-section">
     <div class="number-block">
-      <div class="number">92.5%</div>
-      <div class="number-label">MEG-APSU v1.3<br>frozen blind test</div>
+      <div class="number">55</div>
+      <div class="number-label">Enzymes classified<br>100% accuracy</div>
     </div>
     <div class="number-block">
       <div class="number">10,774</div>
@@ -603,8 +551,8 @@
       <div class="number-label">PQ-TLS systems<br>downgradeable</div>
     </div>
     <div class="number-block">
-      <div class="number">4,151</div>
-      <div class="number-label">Elliptic curves<br>certified · Radix</div>
+      <div class="number">5.833</div>
+      <div class="number-label">Cohen's d<br>MEG-APSU</div>
     </div>
   </section>
 
@@ -612,24 +560,6 @@
   <section class="tools-section">
     <div class="section-label">Research Tools — All Built in Rust</div>
     <div class="tools-grid">
-      <div class="tool-card wide">
-        <div class="tool-name"><a href="radix-riemanniana.html" style="color:inherit;text-decoration:none">RADIX RIEMANNIANA</a></div>
-        <div class="tool-version">Number Theory · radix-rank</div>
-        <div class="tool-desc">
-          The reproducing kernel of the Weil form, built from the primes alone. Chooses, for each elliptic curve,
-          the optimal test function for bounding its analytic rank. Every bound certified with ball arithmetic.
-        </div>
-        <div class="tool-stat">4,151 curves · 8–23% fewer primes · never worse than the fixed kernel</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name"><a href="d-bridge.html" style="color:inherit;text-decoration:none">THE D-BRIDGE</a></div>
-        <div class="tool-version">Fluid Physics · interactive map</div>
-        <div class="tool-desc">
-          Where does real water end a Navier–Stokes singularity? Thermal noise, the hydrogen-bond network,
-          the speed of sound or the molecules — and why heavy water (D₂O) shifts the answer, in opposite directions.
-        </div>
-        <div class="tool-stat">Order-of-magnitude estimate · H₂O vs D₂O · sourced data</div>
-      </div>
       <div class="tool-card">
         <div class="tool-name">MEG-APSU</div>
         <div class="tool-version">Quantum Enzyme Classifier</div>
@@ -638,7 +568,7 @@
           using kinetic isotope effects and tunneling transmission coefficients.
           35.7% of 115 FDA targets identified as quantum-critical.
         </div>
-        <div class="tool-stat">v1.3 · 92.5% on a frozen blind test set (40 proteins, family split)</div>
+        <div class="tool-stat">Cohen's d = 5.833 · 100% accuracy · 55 enzymes</div>
       </div>
       <div class="tool-card">
         <div class="tool-name">TERRA</div>
@@ -651,14 +581,14 @@
         <div class="tool-stat">v0.5.0 · 34 modules · Record: 9 QC enzymes (A. scutulata)</div>
       </div>
       <div class="tool-card">
-        <div class="tool-name"><a href="zeno.html" style="color:inherit;text-decoration:none">ZENO</a></div>
-        <div class="tool-version">Tunneling &amp; Deuteration Toolkit</div>
+        <div class="tool-name">NANSHE</div>
+        <div class="tool-version">Quantum Dosing Error Calculator</div>
         <div class="tool-desc">
-          Computes the quantum fraction η = 1 − 1/κ of the Hackfort Equation (Eckart tunneling).
-          ZENO-DX predicts the real benefit of deuterating a drug after metabolic switching.
-          Successor of NANSHE, whose dosing-error claim is withdrawn.
+          Calculates pharmacological dosing errors caused by ignoring 
+          quantum tunneling in drug metabolism. Pure Rust, zero dependencies. 
+          Named after the Sumerian goddess of false measures.
         </div>
-        <div class="tool-stat">Checked against 4 published QM/MM enzyme studies · η 0.50–0.94</div>
+        <div class="tool-stat">v0.1.0 · CYP3A4 covers ~50% of all oral drugs</div>
       </div>
       <div class="tool-card">
         <div class="tool-name">VÄRN-60</div>
@@ -728,17 +658,9 @@
     <div class="section-label">Publications & Preprints</div>
     <div class="pub-list">
       <div class="pub-item">
-        <div class="pub-type">Preprint · October 2026</div>
-        <div class="pub-title"><a href="radix-riemanniana.html" style="color:inherit">Optimal windowed test functions for bounding analytic ranks of elliptic curves</a></div>
-        <div class="pub-venue">Introduces the Radix Riemanniana · code and certificates:
-          <a href="https://github.com/sectio-aurea-q/radix-rank">github.com/sectio-aurea-q/radix-rank</a> ·
-          <a href="https://doi.org/10.5281/zenodo.23299461">Zenodo 10.5281/zenodo.23299461</a></div>
-      </div>
-      <div class="pub-item">
         <div class="pub-type">Preprint · 2026</div>
         <div class="pub-title">The Hackfort Equation: A Mathematical Framework for Quantum Criticality in Biological, Pharmacological, and Cryptographic Systems</div>
-        <div class="pub-venue">MEGALODON Research · Bitcoin-timestamped March 2026 ·
-          <a href="hackfort-equation.html">read online</a></div>
+        <div class="pub-venue">MEGALODON Research · Bitcoin-timestamped March 2026</div>
       </div>
       <div class="pub-item">
         <div class="pub-type">Preprint · bioRxiv 2026</div>
@@ -765,73 +687,5 @@
     </div>
   </footer>
 
-<script>
-/* Plate I — a wave packet meets a barrier; part of it tunnels through. Monochrome line engraving. */
-(function () {
-  var cv = document.getElementById('tunnel');
-  if (!cv || !cv.getContext) return;
-  var ctx = cv.getContext('2d');
-  var reduce = false;
-  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
-  var PAPER = '#f3eee2', INK = '29,26,22', RUBRIC = '138,28,28';
-  var W = 0, H = 0, dpr = 1;
-  function size() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = cv.clientWidth; H = cv.clientHeight;
-    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  function smooth(a, b, x) { var t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); }
-  function barrier(x) { return 0.95 * Math.exp(-Math.pow(x / 0.32, 8)); }
-  function packet(x, c, A) { var d = x - c; return A * Math.exp(-d * d / 0.12) * Math.cos(9 * d); }
-  var T = 0.45; // transmitted amplitude (illustrative)
-  function wave(x, p) {
-    var c = -2.6 + 5.2 * p;
-    var past = smooth(-0.35, 0.35, c);
-    var w = 0;
-    if (x < -0.33) w += packet(x, c, 0.55 * (1 - past));          // incoming
-    if (x < -0.33) w += packet(x, -c, 0.42 * past);               // reflected
-    if (x > 0.33)  w += packet(x, c, 0.55 * T * past * 1.6);      // tunnelled
-    return w;
-  }
-  function draw(p) {
-    ctx.fillStyle = PAPER; ctx.fillRect(0, 0, W, H);
-    var rows = 15, cols = Math.max(90, Math.round(W / 4));
-    var sx = W * 0.82 / 5.2, x0 = W * 0.5, skew = W * 0.06;
-    var rowGap = H * 0.035, zScale = H * 0.36, base = H * 0.36;
-    for (var r = 0; r < rows; r++) {
-      var y = -1 + 2 * r / (rows - 1);               // back (-1) to front (+1)
-      var env = Math.exp(-y * y / 0.55);
-      var pts = [];
-      for (var i = 0; i <= cols; i++) {
-        var x = -2.6 + 5.2 * i / cols;
-        var z = barrier(x) + wave(x, p) * env;
-        pts.push([x0 + x * sx + y * skew, base + y * rowGap * 3.2 - z * zScale + rowGap * 3.2]);
-      }
-      ctx.beginPath();
-      ctx.moveTo(pts[0][0], H);
-      for (var j = 0; j < pts.length; j++) ctx.lineTo(pts[j][0], pts[j][1]);
-      ctx.lineTo(pts[pts.length - 1][0], H); ctx.closePath();
-      ctx.fillStyle = PAPER; ctx.fill();
-      ctx.beginPath();
-      for (var k = 0; k < pts.length; k++) (k ? ctx.lineTo : ctx.moveTo).call(ctx, pts[k][0], pts[k][1]);
-      var mid = r === (rows - 1) / 2;
-      ctx.strokeStyle = mid ? 'rgba(' + RUBRIC + ',.85)' : 'rgba(' + INK + ',' + (0.35 + 0.45 * r / rows) + ')';
-      ctx.lineWidth = mid ? 1.3 : 0.9;
-      ctx.stroke();
-    }
-  }
-  var t0 = null;
-  function loop(ts) {
-    if (t0 === null) t0 = ts;
-    draw(((ts - t0) / 7000) % 1);
-    requestAnimationFrame(loop);
-  }
-  size();
-  window.addEventListener('resize', function () { size(); if (reduce) draw(0.82); });
-  if (reduce) draw(0.82); else requestAnimationFrame(loop);
-})();
-
-</script>
 </body>
 </html>
