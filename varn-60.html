@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VÄRN-60 — Sabrina Hackfort</title>
+<meta name="description" content="VÄRN-60 (Anu) is an automated side-channel scanner for the three NIST post-quantum standards. On ML-KEM-768 it measures the decapsulation time of crafted ciphertexts and finds it constant (Cohen's d 0.018).">
+<meta name="author" content="Sabrina Hackfort">
+<link rel="canonical" href="https://sectio-aurea-q.github.io/varn-60.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#f3eee2; --paper2:#ebe4d3; --ink:#1d1a16; --sepia:#6b5a45; --faint:#b9ac94; --rubric:#8a1c1c; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ font-size:18px; }
+  body{ background:var(--paper); background-image:radial-gradient(ellipse at center, rgba(255,252,244,.55) 0%, rgba(0,0,0,0) 60%, rgba(120,95,60,.10) 100%);
+        color:var(--ink); font-family:'EB Garamond', Georgia, serif; line-height:1.75; }
+  nav{ display:flex; justify-content:space-between; align-items:baseline; padding:22px 8vw; border-bottom:3px double var(--sepia); }
+  nav a{ color:var(--sepia); text-decoration:none; font-family:'IM Fell English SC', serif; letter-spacing:1px; font-size:.85rem; }
+  nav .name{ font-family:'UnifrakturMaguntia', serif; font-size:1.35rem; color:var(--ink); letter-spacing:0; }
+  article{ max-width:760px; margin:0 auto; padding:64px 20px 110px; }
+  .label{ font-family:'IM Fell English SC', serif; color:var(--sepia); letter-spacing:3px; font-size:.82rem; text-align:center; }
+  h1{ font-family:'UnifrakturMaguntia', serif; font-weight:400; font-size:clamp(2.6rem,7vw,4.4rem); line-height:1.1; text-align:center; margin:14px 0 6px; }
+  .sub{ text-align:center; font-style:italic; color:var(--sepia); font-size:1.08rem; }
+  .meta{ text-align:center; font-family:'IM Fell English SC', serif; color:var(--sepia); font-size:.8rem; letter-spacing:1px; margin-top:14px; }
+  .fleuron{ text-align:center; color:var(--sepia); font-size:1.4rem; margin:38px 0 30px; letter-spacing:14px; }
+  h2{ font-family:'UnifrakturMaguntia', serif; font-weight:400; font-size:2rem; margin:46px 0 14px; }
+  p{ margin:0 0 16px; text-align:justify; hyphens:auto; }
+  .initial::first-letter{ font-family:'UnifrakturMaguntia', serif; float:left; font-size:4.2rem; line-height:.85; padding:6px 10px 0 0; color:var(--rubric); }
+  .defbox{ border:3px double var(--ink); padding:22px 26px; margin:28px 0; background:rgba(255,252,244,.45); }
+  .defbox .t{ font-family:'IM Fell English SC', serif; letter-spacing:1px; margin-bottom:8px; }
+  figure{ margin:34px 0 10px; }
+  .plate{ border:1px solid var(--sepia); outline:3px double var(--sepia); outline-offset:5px; background:var(--paper); position:relative; overflow:hidden; }
+  #view{ width:100%; height:440px; display:block; cursor:grab; touch-action:none; }
+  #view:active{ cursor:grabbing; }
+  .axis{ position:absolute; font-family:'IM Fell English SC', serif; font-size:.78rem; color:var(--sepia); pointer-events:none; }
+  figcaption{ font-size:.92rem; color:var(--sepia); font-style:italic; margin-top:14px; text-align:justify; }
+  .ctrl{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:16px; font-family:'IM Fell English SC', serif; color:var(--sepia); font-size:.85rem; }
+  .seg{ display:inline-flex; border:1px solid var(--sepia); }
+  .seg button{ font-family:'IM Fell English SC', serif; font-size:.85rem; letter-spacing:.5px; background:transparent; color:var(--sepia); border:0; padding:5px 16px; cursor:pointer; }
+  .seg button[aria-pressed="true"]{ background:var(--ink); color:var(--paper); }
+  .seg button:focus-visible{ outline:2px solid var(--rubric); outline-offset:2px; }
+  .readout{ font-family:'EB Garamond', serif; font-size:1.02rem; color:var(--ink); }
+  .readout b{ color:var(--rubric); font-weight:600; }
+  table{ width:100%; border-collapse:collapse; margin:20px 0 6px; font-size:.95rem; }
+  th{ font-family:'IM Fell English SC', serif; font-weight:400; letter-spacing:.5px; border-top:2px solid var(--ink); border-bottom:1px solid var(--ink); padding:7px 8px; text-align:left; }
+  td{ padding:7px 8px; border-bottom:1px solid var(--faint); }
+  tr:last-child td{ border-bottom:2px solid var(--ink); }
+  .r{ text-align:right; font-variant-numeric:oldstyle-nums tabular-nums; white-space:nowrap; }
+  .cap{ font-size:.88rem; color:var(--sepia); font-style:italic; }
+  .verdict{ text-align:center; font-family:'IM Fell English SC', serif; letter-spacing:1px; font-size:1.05rem; margin:18px 0; padding:10px; border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); }
+  .verdict b{ color:var(--rubric); }
+  a{ color:var(--rubric); }
+  .wrap{ overflow-x:auto; }
+  footer{ text-align:center; border-top:3px double var(--sepia); margin-top:60px; padding-top:20px; font-size:.82rem; color:var(--sepia); font-style:italic; }
+  @media (max-width:600px){ html{ font-size:16.5px; } nav{ padding:16px; } article{ padding:40px 16px 80px; } #view{ height:340px; } p{ text-align:left; } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="name" href="sabrina-hackfort.html">Sabrina Hackfort</a>
+  <span><a href="zeno.html">ZENO</a> &nbsp;·&nbsp; <a href="radix-riemanniana.html">Radix</a></span>
+</nav>
+<article>
+  <div class="label">Post-Quantum Cryptography · Anno MMXXVI</div>
+  <h1>Värn-60</h1>
+  <div class="sub">An automated side-channel scanner for the post-quantum standards — and what it finds when it listens to the clock</div>
+  <div class="meta">Sabrina Hackfort · Independent Researcher · ORCID 0009-0007-7458-2487</div>
+  <div class="fleuron">❦ ❦ ❦</div>
+
+  <p class="initial">A cipher can be broken not only by its mathematics but by its timing. If an implementation takes a few nanoseconds longer on some secret inputs than on others, that difference is a leak, and an attacker who can measure it can pull the secret out one step at a time. VÄRN-60 — codename Anu — is the instrument that listens for that difference in the new post-quantum algorithms, and measures it against the clock of the processor itself.</p>
+
+  <div class="defbox">
+    <div class="t">What it does</div>
+    <p>VÄRN-60 crafts many ciphertexts — valid ones and deliberately malformed ones — feeds them to a key-decapsulation routine, and times each one with the Apple Silicon hardware performance counters. It then asks, with a Welch <i>t</i>-test and Cohen's <i>d</i>, whether the malformed inputs are handled in a measurably different time. It covers all three NIST standards: ML-KEM (FIPS 203), ML-DSA (FIPS 204) and SLH-DSA (FIPS 205).</p>
+  </div>
+
+  <p>To my knowledge, it is the first scanner to bring these four things together in one tool: all three NIST post-quantum standards, a targeted Fujisaki–Okamoto oracle, both static and dynamic checking, and hardware counters on Apple Silicon. It was developed independently. General constant-time checkers came before it — ctgrind (2010), dudect (2016), TIMECOP in SUPERCOP — and VÄRN-60 does not replace them; it specialises where they are general.</p>
+
+  <h2>The Measurement</h2>
+  <p>The plate below is a real run: ML-KEM-768 on an Apple M4 Pro, 1000 timings for each of 15 ciphertext classes. Each ridge is the distribution of decapsulation times for one class. If the implementation leaked, the malformed classes would ride ahead of or behind the valid one. They do not — the ridges sit on the same line. Drag to turn the plate.</p>
+  <figure>
+    <div class="plate">
+      <canvas id="view" aria-label="Three-dimensional ridgeline of decapsulation-time distributions for fifteen ciphertext classes"></canvas>
+      <div class="axis" id="axT">decapsulation time (ns) →</div>
+      <div class="axis" id="axV">ciphertext class →</div>
+    </div>
+    <div class="ctrl">
+      <span class="seg" role="group" aria-label="View">
+        <button id="bMeas" aria-pressed="true">measured</button><button id="bLeak" aria-pressed="false">if it leaked</button>
+      </span>
+      <span class="readout" id="ro"></span>
+    </div>
+    <figcaption>Fifteen timing distributions for ML-KEM-768 (Apple M4 Pro, 1000 samples each, interleaved measurement). Valid ciphertext in red, the fourteen malformed classes in ink. Press <b>if it leaked</b> to see what a vulnerable implementation would look like — the malformed classes ride ahead of the valid one, and the secret falls out of the gaps. Press <b>measured</b> for VÄRN-60's actual result: the classes snap onto one line. The largest real gap is ≈ 24 ns, lost in the ≈ 1320 ns noise. The "if it leaked" view is an illustration, not a measurement. Drag to turn the plate.</figcaption>
+  </figure>
+
+  <div class="verdict">Max Cohen's <i>d</i> = <b>0.018</b> &nbsp;(leak threshold 0.20) &nbsp;·&nbsp; verdict: <b>no timing leak — constant-time</b></div>
+
+  <h2>What the Numbers Say</h2>
+  <div class="wrap"><table>
+    <tr><th>Ciphertext class vs. valid</th><th class="r">Δ mean (ns)</th><th class="r">Cohen's d</th><th class="r">p</th></tr>
+    <tr><td>all-zero</td><td class="r">+18.7</td><td class="r">0.014</td><td class="r">0.75</td></tr>
+    <tr><td>all-ones</td><td class="r">+1.4</td><td class="r">0.001</td><td class="r">0.98</td></tr>
+    <tr><td>bit-flip (worst of 8)</td><td class="r">+23.6</td><td class="r">0.018</td><td class="r">0.69</td></tr>
+    <tr><td>random (worst of 4)</td><td class="r">+22.0</td><td class="r">0.017</td><td class="r">0.71</td></tr>
+  </table></div>
+  <p class="cap">Every class: d below 0.02, p near 1. No class is distinguishable from the valid one. Timer resolution 41 ns; baseline mean ≈ 7930 ns. This is the free demo scan (ML-KEM-768 only); the full audit across all three standards runs under licence.</p>
+
+  <h2>A Measurement Artifact, Corrected</h2>
+  <p>An earlier version measured each class in its own block, one after another. On a laptop that warms up and changes clock frequency as it runs, the later blocks drift, and the drift can masquerade as a leak — it once showed a difference of Cohen's d around 0.7, which looked alarming and was not real. The measurement now interleaves the classes: every round times each class once, in rotating order, so warm-up and thermal drift fall on all of them equally. With that fix the apparent leak disappears, as the plate shows.</p>
+
+  <h2>On ML-DSA</h2>
+  <p>VÄRN-60 also sees that ML-DSA signing takes a variable amount of time from one signature to the next. This is <i>not</i> a leak. The algorithm uses rejection sampling: it draws candidate signatures and discards the ones that fall outside a bound, so the number of tries — and therefore the time — varies by design. The variation is not tied to the secret key. Reporting it as a vulnerability would be a mistake; it is expected behaviour.</p>
+
+  <h2>What It Does Not Claim</h2>
+  <p>A clean result on five reference libraries is evidence, not proof: another platform, another compiler, or a different workload could still leak, and only the demo configuration is shown here. VÄRN-60 measures timing through one channel; it says nothing about power, electromagnetic or cache-based attacks. And it is a scanner, not an attack — it finds and reports, so that implementations can be hardened before anyone else goes looking.</p>
+
+  <footer>
+    © 2026 Sabrina Hackfort · MEGALODON Research · An AI assistant (Claude, Anthropic) was used in preparing this work.
+  </footer>
+</article>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const V = {
+  mean: [7930.8,7949.5,7932.2,7947.4,7942.0,7946.9,7942.2,7954.4,7949.3,7944.7,7930.7,7951.7,7952.8,7940.6,7941.7],
+  sd:   [1310.8,1333.6,1326.3,1333.2,1315.6,1327.9,1329.1,1349.6,1334.5,1325.7,1311.9,1338.7,1328.8,1316.5,1319.1],
+  name: ["valid","all-zero","all-ones","bit-flip 0","bit-flip 1","bit-flip 2","bit-flip 3","bit-flip 4","bit-flip 5","bit-flip 6","bit-flip 7","random 0","random 1","random 2","random 3"]
+};
+(function(){
+  const cv = document.getElementById('view'), ro = document.getElementById('ro');
+  const bMeas = document.getElementById('bMeas'), bLeak = document.getElementById('bLeak');
+  const nV = V.mean.length, NT = 56;
+  const T0 = 4000, T1 = 13500;                 // time window (ns)
+  const Xp = t => (t - (T0+T1)/2) / ((T1-T0)/2) * 3.2;
+  const Zp = v => -2.5 + 5.0 * v/(nV-1);
+  const Yp = gg => gg * 2.9;
+  // measured means (real) and an illustrative leak profile (clearly hypothetical)
+  const measMean = V.mean.slice();
+  const leakMean = V.mean.map((m,v)=> v===0 ? m : 7930 + 600 + (v/(nV-1))*2300 );
+  const fmt = (x,d)=>x.toFixed(d).replace('.',',');
+  function setRead(p){ // p = 0 measured .. 1 leak
+    if (p < 0.5) ro.innerHTML = 'measured: max Cohen’s d <b>0.018</b> — constant-time';
+    else ro.innerHTML = '<b>illustration</b> — a real leak would look like this';
+  }
+  if (!window.THREE){ setRead(0); return; }
+  let renderer; try { renderer = new THREE.WebGLRenderer({canvas: cv, antialias:true}); } catch(e){ setRead(0); return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2)); renderer.setClearColor(0xf3eee2,1);
+  const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(36,1,0.1,100);
+  const INK=0x1d1a16, SEPIA=0x6b5a45, RUB=0x8a1c1c;
+  const g = new THREE.Group(); scene.add(g);
+  // frame + baseplate hatch
+  const fl = [-3.2,0,-2.5, 3.2,0,-2.5, 3.2,0,2.5, -3.2,0,2.5, -3.2,0,-2.5, -3.2,2.9,-2.5];
+  const fg = new THREE.BufferGeometry(); fg.setAttribute('position', new THREE.Float32BufferAttribute(fl,3));
+  g.add(new THREE.LineSegments(fg, new THREE.LineBasicMaterial({color:SEPIA})));
+  // one filled ribbon + crisp top line per class
+  const fills=[], tops=[];
+  for (let v=0; v<nV; v++){
+    const isV = v===0;
+    const fgeo=new THREE.BufferGeometry(); fgeo.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(NT*6*3),3));
+    const fmat=new THREE.MeshBasicMaterial({color:isV?RUB:SEPIA, transparent:true, opacity:isV?0.22:0.13, side:THREE.DoubleSide, depthWrite:false});
+    const mesh=new THREE.Mesh(fgeo,fmat); g.add(mesh); fills.push(mesh);
+    const tgeo=new THREE.BufferGeometry(); tgeo.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array((NT+1)*3),3));
+    const tmat=new THREE.LineBasicMaterial({color:isV?RUB:INK, transparent:true, opacity:isV?1:0.55});
+    const line=new THREE.Line(tgeo,tmat); g.add(line); tops.push(line);
+  }
+  function rebuild(mean){
+    for (let v=0; v<nV; v++){
+      const m=mean[v], s=V.sd[v], z=Zp(v);
+      const tp=tops[v].geometry.attributes.position.array;
+      const fp=fills[v].geometry.attributes.position.array; let fi=0;
+      let px, py;
+      for (let i=0;i<=NT;i++){ const t=T0+(T1-T0)*i/NT; const y=Yp(Math.exp(-((t-m)*(t-m))/(2*s*s))); const x=Xp(t);
+        tp[i*3]=x; tp[i*3+1]=y; tp[i*3+2]=z;
+        if (i>0){ // two triangles: (px,0)(px,py)(x,y) and (px,0)(x,y)(x,0)
+          fp[fi++]=px; fp[fi++]=0; fp[fi++]=z;  fp[fi++]=px; fp[fi++]=py; fp[fi++]=z;  fp[fi++]=x; fp[fi++]=y; fp[fi++]=z;
+          fp[fi++]=px; fp[fi++]=0; fp[fi++]=z;  fp[fi++]=x; fp[fi++]=y; fp[fi++]=z;   fp[fi++]=x; fp[fi++]=0; fp[fi++]=z;
+        }
+        px=x; py=y;
+      }
+      tops[v].geometry.attributes.position.needsUpdate=true;
+      fills[v].geometry.attributes.position.needsUpdate=true;
+    }
+  }
+  let az=-0.62, el=0.5, dist=11.4, auto=true;
+  let p=0, target=0, cur=measMean.slice();
+  function place(){ cam.position.set(dist*Math.cos(el)*Math.sin(az), dist*Math.sin(el)+1.0, dist*Math.cos(el)*Math.cos(az)); cam.lookAt(0,1.1,0); }
+  function put(e,x,y,z){ const pr=new THREE.Vector3(x,y,z).project(cam), W=cv.clientWidth, H=cv.clientHeight, ew=e.offsetWidth||90;
+    e.style.left=Math.min(W-ew-6,Math.max(6,(pr.x+1)/2*W))+'px'; e.style.top=Math.min(H-22,Math.max(6,(1-pr.y)/2*H))+'px'; }
+  function labels(){ put(document.getElementById('axT'),0,0,2.9); put(document.getElementById('axV'),3.4,0,0); }
+  function draw(){ place(); renderer.render(scene,cam); labels(); }
+  function size(){ const w=cv.clientWidth,h=cv.clientHeight; renderer.setSize(w,h,false); cam.aspect=w/h; dist=w/h<1.2?15.2:11.4; cam.updateProjectionMatrix(); draw(); }
+  function setMode(leak){ target=leak?1:0; bMeas.setAttribute('aria-pressed',!leak); bLeak.setAttribute('aria-pressed',leak); setRead(target); }
+  bMeas.onclick=()=>setMode(false); bLeak.onclick=()=>setMode(true); setRead(0);
+  let drag=null;
+  cv.addEventListener('pointerdown',e=>{drag=[e.clientX,e.clientY]; auto=false; cv.setPointerCapture(e.pointerId);});
+  cv.addEventListener('pointermove',e=>{ if(!drag)return; az-=(e.clientX-drag[0])*0.008; el=Math.min(1.35,Math.max(0.05,el+(e.clientY-drag[1])*0.006)); drag=[e.clientX,e.clientY]; });
+  cv.addEventListener('pointerup',()=>drag=null);
+  window.addEventListener('resize',size);
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function tick(){
+    p += (target-p)*0.08; if(Math.abs(target-p)<0.001) p=target;
+    for (let v=0; v<nV; v++) cur[v]=measMean[v]*(1-p)+leakMean[v]*p;
+    rebuild(cur);
+    if(auto&&!reduce) az+=0.0016;
+    draw(); requestAnimationFrame(tick);
+  }
+  rebuild(cur); size(); tick();
+})();
+</script>
+</body>
+</html>
