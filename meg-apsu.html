@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEG-APSU — Sabrina Hackfort</title>
+<meta name="description" content="MEG-APSU classifies enzymes as quantum-critical or classical from their structure, using an open-quantum-system (Lindblad) model. Honest frozen-test accuracy 92.5%, with its earlier 100% claim withdrawn.">
+<meta name="author" content="Sabrina Hackfort">
+<link rel="canonical" href="https://sectio-aurea-q.github.io/meg-apsu.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#f3eee2; --paper2:#ebe4d3; --ink:#1d1a16; --sepia:#6b5a45; --faint:#b9ac94; --rubric:#8a1c1c; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ font-size:18px; }
+  body{ background:var(--paper); background-image:radial-gradient(ellipse at center, rgba(255,252,244,.55) 0%, rgba(0,0,0,0) 60%, rgba(120,95,60,.10) 100%);
+        color:var(--ink); font-family:'EB Garamond', Georgia, serif; line-height:1.75; }
+  nav{ display:flex; justify-content:space-between; align-items:baseline; padding:22px 8vw; border-bottom:3px double var(--sepia); }
+  nav a{ color:var(--sepia); text-decoration:none; font-family:'IM Fell English SC', serif; letter-spacing:1px; font-size:.85rem; }
+  nav .name{ font-family:'UnifrakturMaguntia', serif; font-size:1.35rem; color:var(--ink); letter-spacing:0; }
+  article{ max-width:760px; margin:0 auto; padding:64px 20px 110px; }
+  .label{ font-family:'IM Fell English SC', serif; color:var(--sepia); letter-spacing:3px; font-size:.82rem; text-align:center; }
+  h1{ font-family:'UnifrakturMaguntia', serif; font-weight:400; font-size:clamp(2.4rem,6.5vw,4rem); line-height:1.1; text-align:center; margin:14px 0 6px; }
+  .sub{ text-align:center; font-style:italic; color:var(--sepia); font-size:1.08rem; }
+  .meta{ text-align:center; font-family:'IM Fell English SC', serif; color:var(--sepia); font-size:.8rem; letter-spacing:1px; margin-top:14px; }
+  .fleuron{ text-align:center; color:var(--sepia); font-size:1.4rem; margin:38px 0 30px; letter-spacing:14px; }
+  h2{ font-family:'UnifrakturMaguntia', serif; font-weight:400; font-size:2rem; margin:46px 0 14px; }
+  p{ margin:0 0 16px; text-align:justify; hyphens:auto; }
+  .initial::first-letter{ font-family:'UnifrakturMaguntia', serif; float:left; font-size:4.2rem; line-height:.85; padding:6px 10px 0 0; color:var(--rubric); }
+  .defbox{ border:3px double var(--ink); padding:22px 26px; margin:28px 0; background:rgba(255,252,244,.45); }
+  .defbox .t{ font-family:'IM Fell English SC', serif; letter-spacing:1px; margin-bottom:8px; }
+  figure{ margin:34px 0 10px; }
+  .plate{ border:1px solid var(--sepia); outline:3px double var(--sepia); outline-offset:5px; background:var(--paper); padding:26px 22px 14px; }
+  figcaption{ font-size:.92rem; color:var(--sepia); font-style:italic; margin-top:16px; text-align:justify; }
+  table{ width:100%; border-collapse:collapse; margin:20px 0 6px; font-size:.95rem; }
+  th{ font-family:'IM Fell English SC', serif; font-weight:400; letter-spacing:.5px; border-top:2px solid var(--ink); border-bottom:1px solid var(--ink); padding:7px 8px; text-align:left; }
+  td{ padding:7px 8px; border-bottom:1px solid var(--faint); }
+  tr:last-child td{ border-bottom:2px solid var(--ink); }
+  .r{ text-align:right; font-variant-numeric:oldstyle-nums tabular-nums; white-space:nowrap; }
+  .cap{ font-size:.88rem; color:var(--sepia); font-style:italic; }
+  a{ color:var(--rubric); }
+  .wrap{ overflow-x:auto; }
+  .bars{ font-family:'IM Fell English SC', serif; }
+  .bar-row{ display:flex; align-items:center; gap:12px; margin:16px 0; }
+  .bar-lab{ flex:0 0 42%; font-size:.86rem; color:var(--sepia); text-align:right; line-height:1.25; }
+  .bar-track{ flex:1; height:24px; position:relative; border:1px solid var(--sepia); background:repeating-linear-gradient(90deg, rgba(107,90,69,.10) 0 1px, transparent 1px 10px); }
+  .bar-fill{ position:absolute; left:0; top:0; bottom:0; background:var(--ink); }
+  .bar-fill.hi{ background:var(--rubric); }
+  .bar-ci{ position:absolute; top:0; bottom:0; background:rgba(138,28,28,.18); border-left:1px dashed var(--rubric); border-right:1px dashed var(--rubric); }
+  .bar-val{ position:absolute; top:50%; transform:translateY(-50%); color:var(--ink); font-size:.8rem; }
+  footer{ text-align:center; border-top:3px double var(--sepia); margin-top:60px; padding-top:20px; font-size:.82rem; color:var(--sepia); font-style:italic; }
+  @media (max-width:600px){ html{ font-size:16.5px; } nav{ padding:16px; } article{ padding:40px 16px 80px; } p{ text-align:left; } .bar-lab{ flex-basis:38%; } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="name" href="sabrina-hackfort.html">Sabrina Hackfort</a>
+  <span><a href="terra.html">TERRA</a> &nbsp;·&nbsp; <a href="zeno.html">ZENO</a></span>
+</nav>
+<article>
+  <div class="label">Quantum Biology · Anno MMXXVI</div>
+  <h1>Meg-Apsu</h1>
+  <div class="sub">A classifier that reads an enzyme's structure and asks whether it works by the quantum tunnel</div>
+  <div class="meta">Sabrina Hackfort · Independent Researcher · ORCID 0009-0007-7458-2487</div>
+  <div class="fleuron">❦ ❦ ❦</div>
+
+  <p class="initial">Some enzymes move a hydrogen by letting it tunnel through the energy barrier rather than over it. Whether an enzyme does this cannot be read off its name; it depends on the geometry of its active site. MEG-APSU takes an enzyme's structure, runs it through an open-quantum-system model, and places it on one side of a line: quantum-critical, or classical. It is the engine that TERRA uses to scan species, and its honest worth is exactly as good as that line is drawn.</p>
+
+  <div class="defbox">
+    <div class="t">The method</div>
+    <p>From the active-site geometry, MEG-APSU builds a small open-quantum-system (Lindblad) model of the hydrogen-transfer step and reads out how much of the rate the tunnel carries. A threshold on that quantity decides the label. It is written in Rust, from structure to classification.</p>
+  </div>
+
+  <h2>Honest Accuracy</h2>
+  <p>A classifier is only as trustworthy as the test it has not seen. MEG-APSU is measured on a frozen set of 40 proteins, split so that no protein family appears in both training and test. On that set, version 1.3 is right 92.5 % of the time. The simplest sensible rule — guess from the cofactor alone — gets 75 %. So the quantum model earns its keep, but it is not magic.</p>
+
+  <figure>
+    <div class="plate">
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-lab">cofactor baseline<br><span class="cap">guess from cofactor only</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:75%"></div><div class="bar-val" style="left:calc(75% + 6px)">75.0 %</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-lab">MEG-APSU v1.2<br><span class="cap">earlier version</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:80%"></div><div class="bar-val" style="left:calc(80% + 6px)">80.0 %</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-lab">MEG-APSU v1.3<br><span class="cap">current</span></div>
+          <div class="bar-track"><div class="bar-ci" style="left:80%;width:17%"></div><div class="bar-fill hi" style="width:92.5%"></div><div class="bar-val" style="left:calc(92.5% - 46px); color:var(--paper)">92.5 %</div></div>
+        </div>
+      </div>
+    </div>
+    <figcaption>Accuracy on the frozen 40-protein test set, family-split, classification threshold 10. The shaded band on v1.3 is the 95 % confidence interval (80–97 %) — with only 40 proteins the number carries real uncertainty, and that band is part of the honest result. v1.3 clears both the earlier version and the cofactor baseline.</figcaption>
+  </figure>
+
+  <h2>What Changed, and Why the Old 100 % Was Wrong</h2>
+  <p>An earlier version reported 100 % accuracy. It was not real. The decision threshold had been tuned on the very proteins used to test it, and several heme proteins — myoglobin, haemoglobin, cytochrome c — were being called quantum-critical when they are not. Version 1.3 adds a filter for metal-catalytic sites and separates the development set from the test set properly. The honest number fell from 100 % to 92.5 %, and that fall is the point: a model that cannot be wrong on paper cannot be trusted in the world.</p>
+
+  <h2>Applied to Drug Targets</h2>
+  <p>Run across 115 FDA-target enzymes, MEG-APSU labels about 35.7 % of them quantum-critical. That figure should be read through the accuracy above: it is a classifier's estimate at 92.5 % per-enzyme reliability, not a verified count. It is a map of where to look, not a verdict on each target.</p>
+
+  <h2>What It Does Not Claim</h2>
+  <p>Three proteins are still misread on the test set — flavodoxin, haemerythrin, bacterioferritin — and the aconitase label is uncertain. The model's prediction of the kinetic isotope effect is weak (ρ = 0.19): it sorts enzymes into the right bin better than it predicts their exact numbers. And 40 proteins is a small test; the confidence interval says so plainly. The next version is meant to re-check the labels against direct tunnelling evidence and to grow the test set.</p>
+
+  <p class="cap">Preprint: bioRxiv 2026/713696 · Zenodo <a href="https://doi.org/10.5281/zenodo.19208904">10.5281/zenodo.19208904</a> · Code: <a href="https://github.com/sectio-aurea-q/meg-apsu">github.com/sectio-aurea-q/meg-apsu</a></p>
+
+  <footer>
+    © 2026 Sabrina Hackfort · MEGALODON Research · An AI assistant (Claude, Anthropic) was used in preparing this work.
+  </footer>
+</article>
+</body>
+</html>
