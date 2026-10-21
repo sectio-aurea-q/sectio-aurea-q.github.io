@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Hackfort Equation — Sabrina Hackfort</title>
-<meta name="description" content="The Hackfort Equation and the Hackfort Axiom: a quantum criticality index measuring how much of a reaction rate is carried by quantum tunneling. By Sabrina Hackfort, 2026.">
+<meta name="description" content="The Hackfort Equation and the Hackfort Axiom: a quantum criticality index measuring how much of a reaction rate exists only because of quantum tunneling. By Sabrina Hackfort, 2026.">
 <meta name="author" content="Sabrina Hackfort">
 <link rel="canonical" href="https://sectio-aurea-q.github.io/hackfort-equation.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,13 +69,13 @@
 <article>
   <div class="label">Mathematical Framework · Anno MMXXVI</div>
   <h1>The Hackfort Equation</h1>
-  <div class="sub">A quantum criticality index: how much of a rate is carried by the quantum world</div>
+  <div class="sub">A quantum criticality index: how much of a rate exists only because of the quantum world</div>
   <div class="meta">Sabrina Hackfort · Independent Researcher · ORCID 0009-0007-7458-2487</div>
   <div class="fleuron">❦ ❦ ❦</div>
   <p style="text-align:center;font-style:italic;font-size:1.3rem;margin:0 0 6px">Die Natur geht durch Wände. Ich habe nur gezählt, wie oft.</p>
   <p style="text-align:center;font-style:italic;color:var(--sepia);font-size:.95rem;margin:0 0 30px">Nature walks through walls. I have only counted how often.</p>
 
-  <p class="initial">Classical models describe chemistry as particles climbing over energy barriers. Yet protons and hydrides can also tunnel through them, and coherence can shape how a reaction proceeds. The Hackfort Equation condenses this into a single dimensionless number, the quantum criticality index Φ<sub>H</sub>. It states what share of a system's behaviour comes from quantum effects.</p>
+  <p class="initial">Classical models describe chemistry as particles climbing over energy barriers. Yet protons and hydrides can also tunnel through them, and coherence can shape how a reaction proceeds. The Hackfort Equation condenses this into a single dimensionless number, the quantum criticality index Φ<sub>H</sub>. It states how much of a system's behaviour exists only because of quantum effects.</p>
 
   <div class="defbox">
     <div class="t">Axiom 1 — Quantum Discrepancy (Hackfort, 2026)</div>
@@ -87,13 +87,13 @@
   </div>
 
   <h2>The Equation</h2>
-  <div class="formula">Φ<sub>H</sub>(S, t) = Σ<sub>i</sub> w<sub>i</sub> · α<sub>i</sub>(t) · <b>η<sub>i</sub></b> · (1 + |λ̃<sub>i</sub>(t)|)</div>
+  <div class="formula">Φ<sub>H</sub>(S, t) = Σ<sub>i</sub> w<sub>i</sub> · a<sub>i</sub>(t) · <b>η<sub>i</sub></b> · (1 + |λ̃<sub>i</sub>(t)|)</div>
   <div class="note">η<sub>i</sub> = 1 − 1/κ<sub>i</sub> · κ<sub>i</sub> = k<sub>QM</sub> / k<sub>class</sub> · λ̃<sub>i</sub>(t) = (d/dt ln Γ<sub>i</sub>) / λ<sub>ref</sub></div>
   <div class="terms" style="margin-top:22px">
-    <p><em>η<sub>i</sub> — the quantum fraction.</em> The share of a channel's rate that comes from quantum tunneling: 0 for a purely classical channel, approaching 1 when the quantum path dominates.</p>
-    <p><em>α<sub>i</sub>(t) — functionality.</em> How active the channel is: 1 for a healthy enzyme, below 1 when inhibited, towards 0 when lost.</p>
+    <p><em>η<sub>i</sub> — the quantum fraction.</em> The part of a channel's computed rate that exists only because of tunneling, (k<sub>QM</sub> − k<sub>class</sub>)/k<sub>QM</sub>: 0 for a purely classical channel, approaching 1 when tunneling dominates. It is not the share of the rate carried below the barrier top; the two differ by the reflection above the top (<a href="https://zenodo.org/records/23531953">published note</a>).</p>
+    <p><em>a<sub>i</sub>(t) — functionality.</em> How active the channel is: 1 for a healthy enzyme, below 1 when inhibited, towards 0 when lost. Written α<sub>i</sub> in the original statement of 29 March 2026; a<sub>i</sub> avoids confusion with the Eckart parameter α.</p>
     <p><em>λ̃<sub>i</sub>(t) — coherence dynamics.</em> How fast the quantum landscape changes, derived from the Lindblad master equation for open quantum systems.</p>
-    <p><em>w<sub>i</sub> — weight.</em> The relative importance of each channel, with Σw<sub>i</sub> = 1.</p>
+    <p><em>w<sub>i</sub> — weight.</em> The share of channel i in the system's quantum rate, w<sub>i</sub> = k<sub>QM,i</sub> / Σ<sub>j</sub> k<sub>QM,j</sub>, so that Σw<sub>i</sub> = 1. This choice is not free: with it, and with a<sub>i</sub> = 1 and λ̃<sub>i</sub> = 0, Φ<sub>H</sub> is exactly the quantum fraction of the total rate.</p>
   </div>
   <p>The structure is multiplicative, and this encodes a physical statement: without a quantum effect (η = 0) there is no quantum criticality, whatever the dynamics. Coherence can amplify quantum behaviour, but it cannot create it from nothing.</p>
   <p><em>Properties.</em> For channels with κ<sub>i</sub> ≥ 1:</p>
@@ -117,10 +117,10 @@
       <input id="Tsl" type="range" min="0" max="34" value="24" aria-label="Temperature">
       <span class="readout" id="ro"></span>
     </div>
-    <figcaption>Height: the quantum fraction η = 1 − 1/κ for a hydrogen transfer over a barrier of 13.2 kcal/mol, across temperatures from 60 to 400 K and barrier frequencies from 400 to 2000 cm⁻¹. Steep barriers and cold temperatures lift η towards 1, where the quantum path carries almost the whole rate. Red: the enzyme formate dehydrogenase, measured point from QM/MM simulations. Drag to turn the plate.</figcaption>
+    <figcaption>Height: the quantum fraction η = 1 − 1/κ for a hydrogen transfer over a barrier of 13.2 kcal/mol, across temperatures from 60 to 400 K and barrier frequencies from 400 to 2000 cm⁻¹. Steep barriers and cold temperatures lift η towards 1, where almost the whole computed rate exists only because of tunneling. Red: the enzyme formate dehydrogenase, a point from published QM/MM simulations. Drag to turn the plate.</figcaption>
   </figure>
 
-  <h2>Measured, Not Assumed</h2>
+  <h2>Checked, Not Assumed</h2>
   <p>The first check of the equation against independent data: tunneling coefficients κ for the hydride transfer in formate dehydrogenase, from QM/MM simulations in the literature. ZENO is fitted once at 300 K and predicts the other temperatures.</p>
   <div class="wrap"><table>
     <tr><th>Temperature</th><th class="r">κ (QM/MM)</th><th class="r">η from QM/MM</th><th class="r">η predicted (ZENO)</th></tr>
@@ -128,7 +128,7 @@
     <tr><td>300 K</td><td class="r">5,0</td><td class="r">0,80</td><td class="r">0,80</td></tr>
     <tr><td>318 K</td><td class="r">4,3</td><td class="r">0,77</td><td class="r">0,75</td></tr>
   </table></div>
-  <p class="cap">At 300 K η = 0.80: four fifths of the rate of this enzyme step run through the quantum tunnel.</p>
+  <p class="cap">At 300 K η = 0.80: without tunneling, four fifths of the computed rate of this enzyme step would be missing; the rate is five times the classical one.</p>
 
   <h2>Where the Axiom Holds</h2>
   <p>The non-negativity in Axiom 1 is a physical claim, and so it can be tested. For the Eckart barrier, the standard one-dimensional tunneling model, it holds for every symmetric barrier computed (3249 points, barrier heights from 10<sup>−4</sup> to 10<sup>3</sup> k<sub>B</sub>T, hν‡/k<sub>B</sub>T from 10<sup>−3</sup> to 400; this is numerical evidence, a proof is still open), and for every asymmetry up to a factor of seven. It fails for strongly asymmetric barriers with a small barrier height. There, part of the wave is reflected at the step between the two sides even above the barrier top, this loss outweighs the gain from tunneling, and κ &lt; 1. For small barriers the boundary is exact:</p>
@@ -149,10 +149,10 @@
   <p>Enzymatic hydrogen transfers have barriers many k<sub>B</sub>T high, far from this region. There η ≥ 0 holds, and with it the properties above. The axiom is not universal, but its scope is now known exactly.</p>
 
   <h2>Scope and Corrections</h2>
-  <p>Science moves forward by correcting itself, so the record is kept open here. κ must be the ratio of rates with and without tunneling in the same model. It is <em>not</em> the kinetic isotope effect. An earlier version of this page used isotope effects as κ, and those values are withdrawn. Quantum effects can also lower a rate (see “Where the Axiom Holds”), so η as defined applies to channels with κ ≥ 1. The earlier pharmacological corollary, that drug doses are wrong by a factor κ, is withdrawn as well. Clinical doses rest on measured clearance, which already contains any tunneling. The real lever is deliberate deuteration. Its strategy tool ZENO-DX, tested on the approved drug deutetrabenazine with measured inputs only, predicts one of the two active metabolites correctly and underestimates the other; an earlier, more favourable version of this test is withdrawn. The corollaries on biodiversity and on cryptographic systems remain hypotheses that have not yet been tested.</p>
+  <p>Science moves forward by correcting itself, so the record is kept open here. κ must be the ratio of rates with and without tunneling in the same model. It is <em>not</em> the kinetic isotope effect. An earlier version of this page used isotope effects as κ, and those values are withdrawn. Quantum effects can also lower a rate (see “Where the Axiom Holds”); η is then negative, and the properties of Φ<sub>H</sub> listed above hold for channels with κ ≥ 1. The earlier pharmacological corollary, that drug doses are wrong by a factor κ, is withdrawn as well. Clinical doses rest on measured clearance, which already contains any tunneling. The real lever is deliberate deuteration. Its strategy tool ZENO-DX, tested on the approved drug deutetrabenazine with measured inputs only, predicts one of the two active metabolites correctly and underestimates the other; an earlier, more favourable version of this test is withdrawn. The corollaries on biodiversity and on cryptographic systems remain hypotheses that have not yet been tested.</p>
 
   <h2>Built on It</h2>
-  <p><a href="zeno.html"><em>ZENO</em></a>: the tunneling and deuteration toolkit that computes η, checked against four published enzyme simulations. <a href="https://doi.org/10.5281/zenodo.23485066"><em>NETI</em></a>: certified Eckart tunneling coefficients, the reference behind the boundary above. <a href="radix-riemanniana.html"><em>Radix Riemanniana</em></a>: the author's second construction, in number theory.</p>
+  <p><a href="https://zenodo.org/records/23531953"><em>The tunnelling fraction of a reaction rate</em></a> (Zenodo, 2026, <a href="https://doi.org/10.5281/zenodo.23531953">doi:10.5281/zenodo.23531953</a>): the published note that fixes the conventions for η, states what it measures, gives 1197 certified reference values and proposes the Hackfort index with its exact weight rule. <a href="zeno.html"><em>ZENO</em></a>: the tunneling and deuteration toolkit that computes η, checked against four published enzyme simulations. <a href="https://doi.org/10.5281/zenodo.23485066"><em>NETI</em></a>: certified Eckart tunneling coefficients, the reference behind the boundary above. <a href="radix-riemanniana.html"><em>Radix Riemanniana</em></a>: the author's second construction, in number theory.</p>
 
   <footer>
     Original statement of axiom and equation Bitcoin-timestamped on 29 March 2026<br>
