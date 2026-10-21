@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sandqeen1111.github.io/sitemap.xml
+Sitemap: https://sectio-aurea-q.github.io/sitemap.xml
