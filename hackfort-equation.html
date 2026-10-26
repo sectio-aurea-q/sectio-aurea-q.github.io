@@ -78,12 +78,11 @@
   <p class="initial">Classical models describe chemistry as particles climbing over energy barriers. Yet protons and hydrides can also tunnel through them, and coherence can shape how a reaction proceeds. The Hackfort Equation condenses this into a single dimensionless number, the quantum criticality index Φ<sub>H</sub>. It states how much of a system's behaviour exists only because of quantum effects.</p>
 
   <div class="defbox">
-    <div class="t">Axiom 1 — Quantum Discrepancy (Hackfort, 2026)</div>
+    <div class="t">Axiom 1 — Quantum Discrepancy (Hackfort, 2026; sharpened October 2026)</div>
     <p>For every system <i>S</i> possessing at least one quantum-mechanical degree of freedom, there exists an observable 𝒪 such that</p>
-    <div class="formula">⟨𝒪⟩<sub>QM</sub> <b>≠</b> ⟨𝒪⟩<sub>class</sub>.</div>
-    <p style="margin-top:10px">Furthermore, the discrepancy is non-negative and systematic:</p>
-    <div class="formula">Δ(S) ≡ ⟨𝒪⟩<sub>QM</sub> − ⟨𝒪⟩<sub>class</sub> <b>≥</b> 0.</div>
-    <div class="note" style="margin-top:8px">As stated in the original manuscript of 29 March 2026.</div>
+    <div class="formula">Δ(S) ≡ ⟨𝒪⟩<sub>QM</sub> − ⟨𝒪⟩<sub>class</sub> <b>≠</b> 0.</div>
+    <p style="margin-top:10px">The size |Δ(S)| measures how far the classical description misses. The sign is not universal: it depends on the observable and on the regime. Tunneling raises most reaction rates, while quantum effects lower Planck's radiation density at high frequency, where the classical Rayleigh–Jeans law diverges.</p>
+    <div class="note" style="margin-top:8px">Original statement of 29 March 2026: the same, with the additional claim Δ(S) ≥ 0. That claim holds for tunneling rates in the region shown below, not in general; it is kept here as part of the record.</div>
   </div>
 
   <h2>The Equation</h2>
@@ -130,10 +129,10 @@
   </table></div>
   <p class="cap">At 300 K η = 0.80: without tunneling, four fifths of the computed rate of this enzyme step would be missing; the rate is five times the classical one.</p>
 
-  <h2>Where the Axiom Holds</h2>
-  <p>The non-negativity in Axiom 1 is a physical claim, and so it can be tested. For the Eckart barrier, the standard one-dimensional tunneling model, it holds for every symmetric barrier computed (3249 points, barrier heights from 10<sup>−4</sup> to 10<sup>3</sup> k<sub>B</sub>T, hν‡/k<sub>B</sub>T from 10<sup>−3</sup> to 400; this is numerical evidence, a proof is still open), and for every asymmetry up to a factor of seven. It fails for strongly asymmetric barriers with a small barrier height. There, part of the wave is reflected at the step between the two sides even above the barrier top, this loss outweighs the gain from tunneling, and κ &lt; 1. For small barriers the boundary is exact:</p>
+  <h2>Where the Discrepancy Is Positive</h2>
+  <p>For reaction rates, the original claim Δ(S) ≥ 0, that is κ ≥ 1, is a physical statement, and so it can be tested. For the Eckart barrier, the standard one-dimensional tunneling model, it holds for every symmetric barrier computed (3249 points, barrier heights from 10<sup>−4</sup> to 10<sup>3</sup> k<sub>B</sub>T, hν‡/k<sub>B</sub>T from 10<sup>−3</sup> to 400; this is numerical evidence, a proof is still open), and for every asymmetry up to a factor of seven. It fails for strongly asymmetric barriers with a small barrier height. There, part of the wave is reflected at the step between the two sides even above the barrier top, this loss outweighs the gain from tunneling, and κ &lt; 1. For small barriers the boundary is exact:</p>
   <div class="defbox">
-    <div class="t">Boundary of the Axiom for the Eckart Barrier (Hackfort, October 2026)</div>
+    <div class="t">Boundary of κ ≥ 1 for the Eckart Barrier (Hackfort, October 2026)</div>
     <div class="formula">ln κ = v<sub>min</sub> · [ 1 − (r − 1)/6 ]</div>
     <div class="note">r = V<sub>max</sub>/V<sub>min</sub> · v<sub>min</sub> = V<sub>min</sub>/k<sub>B</sub>T · leading order for small v<sub>min</sub></div>
     <p style="margin-top:12px">The factor 1/6 is the thermally averaged reflection at a sharp step, ∫<sub>0</sub><sup>∞</sup> (√(s+1) − √s)<sup>4</sup> ds = 1/6. The sign of η therefore changes exactly at <b style="color:var(--rubric);font-weight:500">r = 7</b>. Numerically the critical ratio approaches 7 (7,0100 at v<sub>min</sub> = 10<sup>−4</sup>, 7,0002 at 10<sup>−6</sup>), and the formula agrees with the full calculation to 0,1 %.</p>
@@ -146,10 +145,10 @@
     <tr><td class="r">4</td><td class="r">4</td><td class="r">2</td><td class="r">1,222</td><td class="r">+0,18</td></tr>
   </table></div>
   <p class="cap">Every value computed twice, with the library <a href="https://doi.org/10.5281/zenodo.23485066">NETI</a> and with an independent 50-digit implementation written directly from the Eckart potential; they agree to 13 digits. The first row is chemically realistic: at 300 K, a strongly endothermic step (75 against 0,75 kJ/mol) with an imaginary frequency of about 1670 cm⁻¹.</p>
-  <p>Enzymatic hydrogen transfers have barriers many k<sub>B</sub>T high, far from this region. There η ≥ 0 holds, and with it the properties above. The axiom is not universal, but its scope is now known exactly.</p>
+  <p>Enzymatic hydrogen transfers have barriers many k<sub>B</sub>T high, far from this region. There η ≥ 0 holds, and with it the properties above. The positive sign is not universal, but for the Eckart barrier its scope is now known exactly.</p>
 
   <h2>Scope and Corrections</h2>
-  <p>Science moves forward by correcting itself, so the record is kept open here. κ must be the ratio of rates with and without tunneling in the same model. It is <em>not</em> the kinetic isotope effect. An earlier version of this page used isotope effects as κ, and those values are withdrawn. Quantum effects can also lower a rate (see “Where the Axiom Holds”); η is then negative, and the properties of Φ<sub>H</sub> listed above hold for channels with κ ≥ 1. The earlier pharmacological corollary, that drug doses are wrong by a factor κ, is withdrawn as well. Clinical doses rest on measured clearance, which already contains any tunneling. The real lever is deliberate deuteration. Its strategy tool ZENO-DX, tested on the approved drug deutetrabenazine with measured inputs only, predicts one of the two active metabolites correctly and underestimates the other; an earlier, more favourable version of this test is withdrawn. The corollaries on biodiversity and on cryptographic systems remain hypotheses that have not yet been tested.</p>
+  <p>Science moves forward by correcting itself, so the record is kept open here. κ must be the ratio of rates with and without tunneling in the same model. It is <em>not</em> the kinetic isotope effect. An earlier version of this page used isotope effects as κ, and those values are withdrawn. Quantum effects can also lower a rate (see “Where the Discrepancy Is Positive”); η is then negative, and the properties of Φ<sub>H</sub> listed above hold for channels with κ ≥ 1. The earlier pharmacological corollary, that drug doses are wrong by a factor κ, is withdrawn as well. Clinical doses rest on measured clearance, which already contains any tunneling. The real lever is deliberate deuteration. Its strategy tool ZENO-DX, tested on the approved drug deutetrabenazine with measured inputs only, predicts one of the two active metabolites correctly and underestimates the other; an earlier, more favourable version of this test is withdrawn. The corollaries on biodiversity and on cryptographic systems remain hypotheses that have not yet been tested.</p>
 
   <h2>Built on It</h2>
   <p><a href="https://zenodo.org/records/23531953"><em>The tunnelling fraction of a reaction rate</em></a> (Zenodo, 2026, <a href="https://doi.org/10.5281/zenodo.23531953">doi:10.5281/zenodo.23531953</a>): the published note that fixes the conventions for η, states what it measures, gives 1197 certified reference values and proposes the Hackfort index with its exact weight rule. <a href="zeno.html"><em>ZENO</em></a>: the tunneling and deuteration toolkit that computes η, checked against four published enzyme simulations. <a href="https://doi.org/10.5281/zenodo.23485066"><em>NETI</em></a>: certified Eckart tunneling coefficients, the reference behind the boundary above. <a href="radix-riemanniana.html"><em>Radix Riemanniana</em></a>: the author's second construction, in number theory.</p>
