@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Critical -->
-  <title>Sabrina Hackfort — Independent Researcher | Quantum Biology & Post-Quantum Cryptography</title>
-  <meta name="description" content="Sabrina Hackfort is an independent researcher and systems programmer. Creator of the Hackfort Equation, MEG-APSU, TERRA, NANSHE, and MEGALODON security research. Based in Ahaus, Germany.">
-  <meta name="keywords" content="Sabrina Hackfort, Hackfort Equation, quantum biology, post-quantum cryptography, MEG-APSU, TERRA, NANSHE, MEGALODON Research, independent researcher, quantum criticality">
+  <title>Sabrina Hackfort — Independent Researcher | Tunnelling Informatics, Quantum Biology & Post-Quantum Cryptography</title>
+  <meta name="description" content="Sabrina Hackfort is an independent researcher and systems programmer in Ahaus, Germany. Main line: tunnelling informatics, the data-driven study of hydrogen tunnelling in enzymes. Creator of the Hackfort Equation, MEG-APSU, ZENO, ELIAH and TERRA, and of MEGALODON security research.">
+  <meta name="keywords" content="Sabrina Hackfort, tunnelling informatics, tunneling informatics, hydrogen tunnelling, kinetic isotope effects, Hackfort Equation, quantum biology, post-quantum cryptography, MEG-APSU, MEG-NEN, ZENO, ELIAH, TERRA, MEGALODON Research, independent researcher, quantum criticality">
   <meta name="author" content="Sabrina Hackfort">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://sectio-aurea-q.github.io/sabrina-hackfort.html">
   
   <!-- Open Graph / Social -->
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Sabrina Hackfort — Quantum Biology & Cryptography Researcher">
-  <meta property="og:description" content="Creator of the Hackfort Equation, MEG-APSU quantum enzyme classifier, TERRA biodiversity scanner, and MEGALODON post-quantum security research.">
+  <meta property="og:title" content="Sabrina Hackfort — Tunnelling Informatics, Quantum Biology & Cryptography Research">
+  <meta property="og:description" content="Main line: tunnelling informatics, the data-driven study of hydrogen tunnelling in enzymes. Creator of the Hackfort Equation, MEG-APSU, ZENO and ELIAH, and of MEGALODON post-quantum security research.">
   <meta property="og:url" content="https://sectio-aurea-q.github.io/sabrina-hackfort.html">
   <meta property="profile:first_name" content="Sabrina">
   <meta property="profile:last_name" content="Hackfort">
@@ -25,9 +25,10 @@
   {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://sectio-aurea-q.github.io/sabrina-hackfort.html#person",
     "name": "Sabrina Hackfort",
     "alternateName": ["MEG", "Sandqueen", "sectio-aurea-q"],
-    "url": "https://sectio-aurea-q.github.io",
+    "url": "https://sectio-aurea-q.github.io/sabrina-hackfort.html",
     "email": "meg.depth@proton.me",
     "jobTitle": "Independent Researcher",
     "worksFor": {
@@ -39,8 +40,12 @@
       "addressLocality": "Ahaus",
       "addressCountry": "DE"
     },
-    "knowsAbout": ["Quantum Biology", "Post-Quantum Cryptography", "Rust Programming", "Enzyme Catalysis", "Biodiversity Conservation", "Quantum Tunneling"],
+    "knowsAbout": [
+      { "@type": "DefinedTerm", "@id": "https://sectio-aurea-q.github.io/tunnelling-informatics.html#term", "name": "Tunnelling informatics", "url": "https://sectio-aurea-q.github.io/tunnelling-informatics.html" },
+      "Hydrogen Tunnelling in Enzymes", "Kinetic Isotope Effects", "Quantum Biology", "Post-Quantum Cryptography", "Rust Programming", "Enzyme Catalysis", "Biodiversity Conservation", "Quantum Tunneling"
+    ],
     "sameAs": [
+      "https://orcid.org/0009-0007-7458-2487",
       "https://github.com/sectio-aurea-q",
       "https://zenodo.org/records/19208904",
       "https://zenodo.org/records/19208577"
@@ -522,6 +527,20 @@
     }
     .tool-card.wide, .tools-grid .tool-card:last-child { grid-column: 1 / -1; }
     .eq-link { color: #c4a35a; }
+    .hero-subtitle a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent); }
+    .hero-subtitle a:hover { color: var(--accent-dim); }
+
+    /* ── MAIN LINE: Tunnelling informatics ── */
+    .mainline-section { padding: 90px 10vw 80px; }
+    .mainline-section .section-label { margin-bottom: 22px; }
+    .mainline-name { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(1.9rem, 3.8vw, 2.9rem); line-height: 1.2; color: var(--navy); margin-bottom: 18px; }
+    .mainline-name a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--accent); }
+    .mainline-desc { max-width: 700px; font-size: 1.02rem; line-height: 1.8; color: var(--ink); }
+    .mainline-desc + .mainline-desc { margin-top: 12px; color: var(--subtle); font-size: .95rem; }
+    .mainline-link { margin-top: 26px; }
+    .mainline-link a { font-family: 'Source Code Pro', monospace; font-size: .75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--accent); }
+    .mainline-link a:hover { color: var(--accent-dim); }
+    @media (max-width: 768px) { .mainline-section { padding: 64px 6vw 56px; } }
   </style>
 </head>
 
@@ -532,8 +551,9 @@
     <div class="hero-label">MEGALODON Research</div>
     <h1>Sabrina Hackfort</h1>
     <p class="hero-subtitle">
-      Independent researcher and systems programmer building quantum biology 
-      and post-quantum cryptography tools in Rust. Creator of the Hackfort Equation.
+      Independent researcher and systems programmer building
+      <a href="tunnelling-informatics.html">tunnelling informatics</a> — the data-driven study of hydrogen
+      tunnelling in enzymes — and post-quantum cryptography tools in Rust. Creator of the Hackfort Equation.
     </p>
     <div class="hero-meta">
       <span><span class="dot"></span>Ahaus, Germany</span>
@@ -543,6 +563,19 @@
   </section>
 
   <div class="divider"></div>
+
+  <!-- ════ MAIN LINE — Tunnelling informatics ════ -->
+  <section class="mainline-section" id="tunnelling-informatics">
+    <div class="section-label">Main Line · since 2026</div>
+    <h2 class="mainline-name"><a href="tunnelling-informatics.html">Tunnelling Informatics</a></h2>
+    <p class="mainline-desc">The data-driven study of hydrogen tunnelling in enzymes: every measured kinetic isotope
+      effect with its source, what such data can and cannot prove about tunnelling, the published claims re-examined
+      against the data, and predictions from enzyme structure put to the laboratory.</p>
+    <p class="mainline-desc">Its database, MEG-NEN, is in construction: 189 isotope effects and 88 temperature series
+      from 37 papers by 8 November 2026, each value read twice. Not to be confused with information systems in tunnel
+      construction or with network tunnelling.</p>
+    <p class="mainline-link"><a href="tunnelling-informatics.html">What it is, and what it is not &rarr;</a></p>
+  </section>
 
   <!-- ════ THE HACKFORT AXIOM — folio ════ -->
   <section class="folio" id="hackfort">
@@ -776,6 +809,7 @@
   <footer>
     <div class="footer-name">© 2026 Sabrina Hackfort — MEGALODON Research</div>
     <div class="footer-links">
+      <a href="tunnelling-informatics.html">Tunnelling informatics</a>
       <a href="https://github.com/sectio-aurea-q">GitHub</a>
       <a href="mailto:meg.depth@proton.me">Contact</a>
       <a href="https://sectio-aurea-q.github.io/meg-apsu-blog.html">Blog</a>
