@@ -264,11 +264,12 @@ eliah grid points.csv</pre></div><p class="cap">The second line takes V₁ and V
 run(my_kappa, tol=1e-6)</pre></div>
 
   <h2>Reported Upstream</h2>
-  <p>The defects were reported to the maintainers of three open-source chemistry codes in October 2026; the TAMkin and pysisyphus reports already used this library, then called NETI, as the reference:</p>
+  <p>The defects were reported to the maintainers of four open-source chemistry codes in October 2026; the TAMkin and pysisyphus reports already used this library, then called NETI, as the reference:</p>
   <ul class="props">
     <li><a href="https://github.com/ReactionMechanismGenerator/RMG-Py/issues/3019">RMG-Py, issue 3019</a>: cancellation in 1 − ratio, and the missing cos branch for small barriers.</li>
     <li><a href="https://github.com/molmod/tamkin/issues/45">TAMkin, issue 45</a>: NaN for small barriers (missing cos branch) and for low imaginary frequencies (cosh overflow).</li>
     <li><a href="https://github.com/eljost/pysisyphus/issues/341">pysisyphus, issue 341</a>: NaN for realistic barriers, the wrong small-barrier branch, and Brown’s TUNL used outside its validated range.</li>
+    <li>MESMER 7.1, reported by e-mail: for small barriers (V<sub>0</sub>·V<sub>1</sub> &lt; ν²/16, the missing cos branch) the transmission probability is set to zero, so the rate drops to zero without a warning. The MESMER team confirmed the case in November 2026 and will change the code.</li>
   </ul>
 
   <h2>What It Does Not Claim</h2>
