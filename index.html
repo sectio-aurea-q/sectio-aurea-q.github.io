@@ -640,8 +640,8 @@
       <div class="number-label">CR species scanned<br>via quantum lens</div>
     </div>
     <div class="number-block">
-      <div class="number">52/52</div>
-      <div class="number-label">PQ-TLS systems<br>downgradeable</div>
+      <div class="number">16/52</div>
+      <div class="number-label">TLS endpoints<br>PQ-ready · survey</div>
     </div>
     <div class="number-block">
       <div class="number">4,151</div>
@@ -713,13 +713,13 @@
       </div>
       <div class="tool-card">
         <div class="tool-name"><a href="varn-60.html" style="color:inherit;text-decoration:none">VÄRN-60</a></div>
-        <div class="tool-version">Post-Quantum Side-Channel Scanner</div>
+        <div class="tool-version">Timing Tests for ML-KEM</div>
         <div class="tool-desc">
-          Automated side-channel scanner for all three NIST PQC standards, with
-          hardware performance counters on Apple Silicon. On ML-KEM-768 it measures
-          decapsulation timing constant (Cohen's d 0.018 — no leak).
+          Measures whether ML-KEM decapsulation takes a different time for different
+          ciphertexts, in five libraries with one procedure. Every run carries controls
+          that show what it can and cannot detect on the machine it runs on.
         </div>
-        <div class="tool-stat">v1.2.0 · Rust · Apple M4 Pro · <a href="varn-60.html" style="color:inherit">see the measurement &rarr;</a></div>
+        <div class="tool-stat">v2.0.0 · Rust · Apache-2.0 · <a href="varn-60.html" style="color:inherit">what it found, and what it does not claim &rarr;</a></div>
       </div>
       <div class="tool-card wide">
         <div class="tool-name"><a href="https://crow-fly.net" style="color:inherit;text-decoration:none">CROW</a></div>
@@ -735,7 +735,7 @@
         <div class="tool-name">MEGALODON</div>
         <div class="tool-version">Security Research Framework</div>
         <div class="tool-desc">
-          Multi-phase cryptographic security research. P1: Kyber timing oracle. 
+          Multi-phase cryptographic security research. P1: Kyber timing (withdrawn). 
           P2: Process memory scanner (71 findings across 16 apps). 
           P4: TLS downgrade engine. P5: Lattice cryptanalysis.
         </div>
@@ -769,9 +769,10 @@
       </div>
       <div class="sec-card">
         <div class="sec-name">Kyber Timing (P1) — withdrawn</div>
-        <div class="sec-desc">An early scan showed an ML-KEM timing difference (d ≈ 0.7). It was a
-        blockwise-measurement artifact. Re-measured interleaved, ML-KEM-768 is constant-time.</div>
-        <div class="sec-stat">Corrected: Cohen's d 0.018 · see <a href="varn-60.html" style="color:inherit">VÄRN-60</a></div>
+        <div class="sec-desc">An early scan showed a timing difference in Kyber decapsulation (d ≈ 0.7). It was an
+        artefact of measuring one class after another. The later statement that ML-KEM-768 “is
+        constant-time” is withdrawn as well: a timing test cannot show that.</div>
+        <div class="sec-stat">Both corrected · see <a href="varn-60.html" style="color:inherit">VÄRN-60</a></div>
       </div>
     </div>
   </section>
